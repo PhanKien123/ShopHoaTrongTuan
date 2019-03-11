@@ -32,7 +32,7 @@
                     <button class="btn btn-primary btn-sm" onclick="AddProductCategory()">
                         <i class="fa fa-user-plus" aria-hidden="true"></i> Thêm ngay
                     </button>
-                    <button class="btn btn-primary btn-sm" id="btnAddEmageProductCategory">
+                    <button class="btn btn-primary btn-sm" id="btnAddImageProductCategorys">
                         <i class="fa fa-caret-square-o-down bigfonts" aria-hidden="true"></i> Chọn ảnh 
                     </button>
                 </span>
@@ -52,7 +52,7 @@
                                 <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
                                     <div class="row">
                                         <div class="w-100 h-25 pl-2 pr-2" id="ImageAddProductCategory">
-                                            <img src="/Uploads/images/Hoa%20Ch%C6%A1i%20T%E1%BA%BFt.jpg" style="width: 100%; height: 100%; ">
+                                            <img src="/Uploads/images/Hoa%20Ch%C6%A1i%20T%E1%BA%BFt.jpg" style="width: 100%; height: 100%; " title="Hình ảnh loại sản phẩm" class="AddImageProductCategory">
                                         </div>
 
                                     </div>
@@ -64,7 +64,7 @@
                                     <input type="hidden" name="image" value="" id="txtAddImageProductCategory" />
                                     <div class="row mt-3">
                                         <div class="col-md-12">
-                                            <input class="form-control" name="AltImage" type="text" placeholder="Mô tả hình ảnh" id="" />
+                                            <input class="form-control" name="AltImage" type="text" placeholder="Mô tả hình ảnh" id="txtAddAltImageProductCategory" />
                                         </div>
 
                                     </div>
@@ -83,13 +83,13 @@
                                 <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
 
                                     <div class="form-group">
-                                        <input class="form-control" name="Name" type="text" placeholder="Tên loại sản phẩm" id="txtAddProductCategoryName" />
+                                        <input class="form-control" name="Name" type="text" placeholder="Tên loại sản phẩm" id="txtAddProductCategoryName" title="Tên của loại sản phẩm"/>
                                     </div>
                                 </div>
                                 <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
 
                                     <div class="form-group">
-                                        <select name="ParentID" class="form-control"  id="txtAddProductCategoryParentId">
+                                        <select name="ParentID" class="form-control txtSeachGroupProductCategory"  id="txtAddProductCategoryParentId" title="tên nhóm của loại sản phẩm" >
                                             <option value="">Chọn nhóm loại sản phẩm -</option>
                                         </select>
                                     </div>
@@ -98,7 +98,7 @@
                                 <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
 
                                     <div class="form-group">
-                                        <input class="form-control" name="DisplayOrder" type="number" placeholder="Thứ tự hiển thị" id="txtSeachNameUser" />
+                                        <input class="form-control" name="DisplayOrder" type="number" placeholder="Thứ tự hiển thị" id="txtAddDisplayOrderProuctCategory" title="Thứ tự hiển thị trong danh sách" />
                                     </div>
                                 </div>
 
@@ -106,7 +106,7 @@
                                 <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
 
                                     <div class="form-group">
-                                        <select name="ShowOnHome" class="form-control" required id="txtAddProductCategoryParentId">
+                                        <select name="ShowOnHome" class="form-control" required id="txtAddShowOnHomeProductCategory" title="Có cho phép loại sản phẩm có hiển thị lên trang chủ không" >
                                             <option value="true">hiển thị lên trang chủ  </option>
                                             <option value="false">không hiển thị lên trang chủ </option>
                                         </select>
@@ -124,30 +124,29 @@
                                 <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
 
                                     <div class="form-group">
-                                        <input class="form-control" name="MetaTitle" type="text" placeholder="Meta Title" id="txtSeachNameUser" />
+                                        <input class="form-control" name="MetaTitle" type="text" placeholder="Meta Title" id="txtAddMetaTitleProductCategory" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
 
                                     <div class="form-group">
-                                        <input class="form-control" name="SeoTitle" type="text" placeholder="Seo Title" id="txtSeachNameUser" />
+                                        <input class="form-control" name="SeoTitle" type="text" placeholder="Seo Title" id="txtAddSeoTitleProductCategory" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
 
                                     <div class="form-group">
-                                        <input class="form-control" name="MetaKeywords" type="text" placeholder="Meta KeyWord" id="txtSeachNameUser" />
+                                        <input class="form-control" name="MetaKeywords" type="text" placeholder="Meta KeyWord" id="txtAddMetaKeywordsProductCategory" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
 
                                     <div class="form-group">
-                                        <input class="form-control" name="MetaDescriptions" type="text" placeholder="Meta Description" id="txtSeachNameUser" />
+                                        <input class="form-control" name="MetaDescriptions" type="text" placeholder="Meta Description" id="txtAddMetaDescriptionsProductCategory" />
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                     <div class="row mt-3">
@@ -157,7 +156,7 @@
                             </div>
                             <div class="card-body">
                                 <input type="hidden" name="Descriptions" id="txtAddDescriptionProductCategory" />
-                                <input id="txtAddDescriptionProductCategoryCkeditor" />
+                                <input id="txtAddDescriptionProductCategoryCkeditor" class="ckeditor"/>
                             </div>
                         </div>
                     </div>
@@ -178,3 +177,21 @@
         <input id="txtimage " class="form-control pt-4" />
 
     </div>*@
+<script src="~/Assets/Admin/js/jquery-3.3.1.js"></script>
+<script>
+  
+
+    $(document).ready(function () {
+
+        CKEDITOR.replace("txtAddDescriptionProductCategoryCkeditor", { height: 1000, });
+            $('#btnAddImageProductCategorys').click(function () {
+            var fider = new CKFinder();
+            fider.selectActionFunction = function (fileUrl) {
+                $(".AddImageProductCategory ").remove();
+                $("#ImageAddProductCategory").append("<img src='" + fileUrl + "' style='width: 100%; height: 100%; ' class='AddImageProductCategory' title='Hình ảnh loại sản phẩm'/>")
+                $('#txtAddImageProductCategory').val(fileUrl);
+            }
+            fider.popup();
+        })
+    });
+</script>

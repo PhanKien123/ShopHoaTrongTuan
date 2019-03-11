@@ -19,27 +19,36 @@ namespace Project.Controllers
             return View();
         }
 
+        public ActionResult Create()
+        {
+            return View();
+        }
 
-        
+        public ActionResult Update()
+        {
+            return View();
+        }
+
+
         DbConnection con = new DbConnection();
 
         /// <summary>
-        /// tìm kiếm thông tin của sản phẩm 
+        /// Phan Đình Kiên : Tìm kiếm thông tin của sản phẩm 
         /// </summary>
-        /// <param name="page">trang của sản phẩm</param>
-        /// <param name="name">tên của sản phẩm</param>
-        /// <param name="price">số tiền của sản phẩm</param>
-        /// <param name="quantity">số lượng của sản phẩm còn trong kho</param>
-        /// <param name="categoryId">mã của loại sản phẩm</param>
+        /// <param name="page">Thông tin trang </param>
+        /// <param name="name">Tên của sản Phẩm</param>
+        /// <param name="price">Giá bán</param>
+        /// <param name="quantity">Số lượng</param>
+        /// <param name="categoryId">Loại doanh mục sản phẩm</param>
         /// <returns></returns>
         [AuthenticationFilter]
         public PartialViewResult Seach(int page, string name, decimal price, int quantity, long categoryId)
         {
             try
             {
-                var query = from x in con.Products
-                            where x.IsActive == 1
-                            select x;
+                var query = from data in con.Products
+                            where data.IsActive == 1
+                            select data;
                 if (name != null)
                 {
                     if (name.Trim() != "")
@@ -96,9 +105,9 @@ namespace Project.Controllers
 
 
         /// <summary>
-        /// add product
+        /// thêm mới thông tin của sản phẩm
         /// </summary>
-        /// <param name="Product"></param>
+        /// <param name="product">Thông tin của sản phẩm sau khi được thêm mới</param>
         /// <returns></returns>
         [AuthenticationFilter]
         public int AddProduct(AddProductModels product)
@@ -106,9 +115,9 @@ namespace Project.Controllers
             try
             {
                 // kiểm tra có trung Product 
-                var query = (from x in con.Products
-                             where x.IsActive == 1
-                             select x);
+                var query = (from data in con.Products
+                             where data.IsActive == 1
+                             select data);
 
 
                 Product us = new Product()
@@ -142,9 +151,9 @@ namespace Project.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Phan Đình Kiên : Lấy thông tin của sản phẩm theo Id 
         /// </summary>
-        /// <param name="Id"></param>
+        /// <param name="Id">mã của sản phẩm cần lây thông tin </param>
         /// <returns></returns>
         [AuthenticationFilter]
         public JsonResult GetProductById(long Id)
@@ -198,9 +207,9 @@ namespace Project.Controllers
         }
 
         /// <summary>
-        /// Sửa Thông Tin Product 
+        /// Phan Đình Kiên : Cập Nhập thông tin của sản phẩm
         /// </summary>
-        /// <param name="editProductModels">Thông Tin Product Cần Sủa</param>
+        /// <param name="editProductModels">Thông tin của loại sản phẩm sau khi được cập nhập</param>
         /// <returns></returns>
         [AuthenticationFilter]
         public int EditProduct(EditProductModels editProductModels)
@@ -252,9 +261,9 @@ namespace Project.Controllers
         }
 
         /// <summary>
-        /// Xóa Thông Tin Product
+        /// Phan Đình Kiên : Xóa thông tin của loại sản phẩm
         /// </summary>
-        /// <param name="Id">Mã của Product</param>
+        /// <param name="Id">M</param>
         /// <returns></returns>
         [AuthenticationFilter]
         public int DeleteProduct(long Id)

@@ -177,6 +177,17 @@ namespace Project.Controllers
         {
             try
             {
+                if(addProductCategory.Name == null || (addProductCategory.Name+ Constants.STRING_NULL).Trim() == "")
+                {
+                    return -1; 
+                }
+
+
+                if(addProductCategory.DisplayOrder== null)
+                {
+                    addProductCategory.DisplayOrder = 0; 
+                }
+
                 LoginUserModels loginUserModels = Session["Login"] as LoginUserModels;
                 ProductCategory productCategory = new ProductCategory()
                 {
@@ -208,6 +219,61 @@ namespace Project.Controllers
             }
         }
 
+
+
+        [AuthenticationFilter]
+        /// <summary>
+        /// Phan Đình Kiên : sửa thông tin của loại sản phẩm 
+        /// </summary>
+        /// <param name="editProductCategoryModels">Thông tin của loại sản phẩm sau khi được chỉnh sửa</param>
+        /// <returns></returns>
+        [ValidateInput(false)]
+        [HttpPost]
+        public int EditProductCategory(EditProductCategoryModels editProductCategoryModels)
+        {
+            try
+            {
+                // validate thông tinh nhập vào 
+                // 1: tên không được phép bỏ trống 
+                if (editProductCategoryModels.Name == null || (editProductCategoryModels.Name + Constants.STRING_NULL).Trim() == "")
+                {
+                    return -1;
+                }
+
+
+                if (editProductCategoryModels.DisplayOrder == null)
+                {
+                    editProductCategoryModels.DisplayOrder = 0;
+                }
+
+                LoginUserModels loginUserModels = Session["Login"] as LoginUserModels;
+                var Data = con.ProductCategories.Find(editProductCategoryModels.ID);
+
+                if (Data != null)
+                {
+                    Data.Name = editProductCategoryModels.Name;
+                    Data.ParentID = editProductCategoryModels.ParentID;
+                    Data.MetaDescriptions = editProductCategoryModels.MetaDescriptions;
+                    Data.MetaKeywords = editProductCategoryModels.MetaKeywords;
+                    Data.MetaTitle = editProductCategoryModels.MetaTitle;
+                    Data.Image = editProductCategoryModels.Image;
+                    Data.AltImage = editProductCategoryModels.AltImage;
+                    Data.DisplayOrder = editProductCategoryModels.DisplayOrder;
+                    Data.ModifiedDate = DateTime.Now;
+                    Data.ModifiedBy = loginUserModels.Name;
+                    Data.Descriptions = editProductCategoryModels.Descriptions;
+                    Data.SeoTitle = editProductCategoryModels.SeoTitle;
+
+                    con.SaveChanges(); 
+
+                }
+                return Constants.RETURN_TRUE;
+            }
+            catch
+            {
+                return Constants.RETURN_FALSE;
+            }
+        }
 
         /// <summary>
         /// Phan Đình Kiên : lấy thông tin của loại sản phẩm đưa vào combobox 
@@ -242,7 +308,7 @@ namespace Project.Controllers
             }
         }
 
-        
+        [AuthenticationFilter]
         /// <summary>
         /// Phan Đình Kiên : Xóa thông tin của loại sản phẩm 
         /// </summary>
@@ -270,41 +336,7 @@ namespace Project.Controllers
             }
         }
 
-
-        /// <summary>
-        /// Phan Đình Kiên : sửa thông tin của loại sản phẩm 
-        /// </summary>
-        /// <param name="editProductCategoryModels">Thông tin của loại sản phẩm sau khi được chỉnh sửa</param>
-        /// <returns></returns>
-        public int EditProductCategory(EditProductCategoryModels editProductCategoryModels)
-        {
-            try
-            {
-                LoginUserModels loginUserModels = Session["Login"] as LoginUserModels;
-                var Data = con.ProductCategories.Find(editProductCategoryModels.ParentID);
-
-                if(Data!= null)
-                {
-                    Data.Name = editProductCategoryModels.Name;
-                    Data.ParentID = editProductCategoryModels.ParentID;
-                    Data.MetaDescriptions = editProductCategoryModels.MetaDescriptions;
-                    Data.MetaKeywords = editProductCategoryModels.MetaKeywords;
-                    Data.MetaTitle = editProductCategoryModels.MetaTitle;
-                    Data.Image = editProductCategoryModels.Image;
-                    Data.AltImage = editProductCategoryModels.AltImage;
-                    Data.DisplayOrder = editProductCategoryModels.DisplayOrder;
-                    Data.ModifiedDate = DateTime.Now;
-                    Data.ModifiedBy = loginUserModels.Name;
-                    Data.Descriptions = editProductCategoryModels.Descriptions; 
-
-                }
-                return Constants.RETURN_TRUE; 
-            }
-            catch
-            {
-                return Constants.RETURN_FALSE; 
-            }
-        }
+        
 
         
 

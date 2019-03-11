@@ -40,6 +40,8 @@ function GetListGroupUser() {
                 }));
             });
 
+
+
         }
     });
 }
@@ -141,9 +143,8 @@ function LoginAdmin() {
                 window.location.href = "/Home/Index";
             }
             else {
-
+                swal("Thông báo lỗi", "(Thông tin tài khoản hoặc mật khẩu không đúng)", "error");
             }
-
         },
         error: function (errr) {
 
@@ -183,32 +184,74 @@ function getGropProductCategory() {
     });
 }
 
-function AddProductCategory() {
 
-   
+
+/*
++  Người viết : Phan Đình Kiên 
++  Nội Dung   : Thêm mới thông tin của loại sản phẩm 
+*/
+function AddProductCategory() {
+    // Lấy thông tin trong ô nhập liệu thông tin chi tiết của loại sản phẩm 
     var value = CKEDITOR.instances['txtAddDescriptionProductCategoryCkeditor'].getData();
+
+    // gán dữ liệu trong thông tin chi tiết của loại sản phẩm vào ô textbox 
     $('#txtAddDescriptionProductCategory').val(value); 
     
+
     $.ajax({
         type:"POST",
         url: "/ProductCategory/AddProductCategory",
         data: $("#FormAdd_ProductCategory").serialize(),
 
         success: function (result) {
-            var data = $("#noidung").val(); 
-            swal("Thông Báo!", data, "success");
-            if (result==1) {
-                ///window.location = '/ProductCategory/index'; 
+            if (result == 1) {
+                
+                window.location = '/ProductCategory/index'; 
                 swal("Thông Báo!", "Thêm mới thành công", "success");
-                alert("Thêm mới thành công"); 
             }
-            else {
-
+            else if(result == -1){
+                swal("Thông báo lỗi", "(Tên loại sản phẩm không được phép bỏ trống)", "error");
             }
             SeachProductCategory();
         }
     });
 }
+
+
+/*
++  Người viết : Phan Đình Kiên 
++  Nội Dung   : Cập nhập thông tin loại sản phẩm 
+*/
+function EditProductCategory() {
+    // Lấy thông tin trong ô nhập liệu thông tin chi tiết của loại sản phẩm 
+    var value = CKEDITOR.instances['txtEditDescriptionProductCategoryCkeditor'].getData();
+
+    // gán dữ liệu trong thông tin chi tiết của loại sản phẩm vào ô textbox 
+    $('#txtEditDescriptionProductCategory').val(value);
+
+
+    $.ajax({
+        type: "POST",
+        url: "/ProductCategory/EditProductCategory",
+        data: $("#FormEdit_ProductCategory").serialize(),
+
+        success: function (result) {
+            if (result == 1) {
+
+                window.location = '/ProductCategory/index';
+                swal("Thông Báo!", "Cập nhập thành công", "success");
+            }
+            else if (result == -1) {
+                swal("Thông báo lỗi", "(Tên loại sản phẩm không được phép bỏ trống)", "error");
+            }
+            else {
+                swal("Thông báo lỗi", "(Cập nhập loại sản phẩm thất bại )", "error");
+            }
+            SeachProductCategory();
+        }
+    });
+}
+
 
 
 
