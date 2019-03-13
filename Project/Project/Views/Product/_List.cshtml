@@ -1,0 +1,68 @@
+﻿
+@using Project.Models
+@using PagedList.Mvc
+@model  PagedList.IPagedList<GetProductModels>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ảnh sản Phẩm</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá bán </th>
+            <th>Số lượng</th>
+            <th>Tên doanh mục</th>
+            <th style="width:130px">Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+
+            int stt = 0;
+            foreach (GetProductModels data in Model)
+            {
+                stt++;
+                <tr>
+                    <th>
+                        @stt
+                    </th>
+                    <td>
+                        @*<img style="height:15%;width:auto" src="@data.GetImage()" />*@
+                    </td>
+                    <td>
+                        @data.Name
+                    </td>
+                    <td>@data.Price</td>
+                    <td>@data.Quantity</td>
+                    <td>@data.CategoryName</td>
+                    <td style="width:20px">
+                        <div class="row">
+                            <a class="btn btn-primary btn-sm mr-1" onclick="window.location='/ProductCategory/Update?ProductCategoryId=@data.ID'" title="Sửa"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            <a class="btn btn-danger btn-sm mr-1" onclick="ShowFromDeletePrductCategory(@data.ID)" title="Xóa"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                            <a class="btn btn-success btn-sm" onclick="Edit_ProductCategoryShow()" title="Bài viết"><i class="fa fa-file-word-o bigfonts" aria-hidden="true"></i></a>
+                        </div>
+
+
+                    </td>
+                </tr>
+            }
+
+        }
+    </tbody>
+</table>
+<div class="row ">
+    <div class="offset-6 ">
+        @Html.PagedListPager(Model, Page => Url.Action("Seach", new { Page = 1, name = "" , price =0, quantity =0, categoryId =0}), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions()
+   {
+       HttpMethod = "GET",
+       UpdateTargetId = "Table_Product"
+   }
+
+           ))
+
+    </div>
+</div>
+<script type="text/javascript">
+
+</script>
+

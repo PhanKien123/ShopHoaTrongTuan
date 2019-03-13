@@ -13,7 +13,10 @@ namespace Project.Controllers
 {
     public class UserController : Controller
     {
-        // GET: User
+        /// <summary>
+        /// Phan Đình Kiên : Hiển thị danh sách người dùng 
+        /// </summary>
+        /// <returns></returns>
         [AuthenticationFilter]
         public ActionResult Index()
         {
@@ -23,13 +26,13 @@ namespace Project.Controllers
         DbConnection con = new DbConnection();
 
         /// <summary>
-        /// tìm kiếm thông tin khách hàng 
+        /// Phan Đình Kiên : Tìm kiếm thông tin người dùng 
         /// </summary>
-        /// <param name="Page"></param>
-        /// <param name="FullName"></param>
-        /// <param name="UserName"></param>
-        /// <param name="Phone"></param>
-        /// <param name="Group"></param>
+        /// <param name="Page">Trang </param>
+        /// <param name="FullName">Tên đầy đủ của người dùng</param>
+        /// <param name="UserName">Tên tài khoản</param>
+        /// <param name="Phone">Số điện thoại </param>
+        /// <param name="Group">Nhóm quyền</param>
         /// <returns></returns>
         /// 
 
@@ -115,9 +118,9 @@ namespace Project.Controllers
 
 
         /// <summary>
-        /// thêm mới thông tin khách hàng 
+        /// Phan Đình Kiên : Thêm mới thông tin người dùng 
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="user">Thông tin người dùng sau khi được thêm mới</param>
         /// <returns></returns>
         [AuthenticationFilter]
         public int AddUser(AddUserModels user)
@@ -163,9 +166,9 @@ namespace Project.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Phan Đình Kiên :Lấy thông tin người dùng theo mã 
         /// </summary>
-        /// <param name="Id"></param>
+        /// <param name="Id">Mã người dùng cần lấy thông tin </param>
         /// <returns></returns>
         [AuthenticationFilter]
         public JsonResult GetUserById(long Id)
@@ -201,9 +204,9 @@ namespace Project.Controllers
         }
 
         /// <summary>
-        /// Sửa Thông Tin User 
+        /// Phan Đình kiên : Chỉnh sửa thông tin người dùng 
         /// </summary>
-        /// <param name="editUserModels">Thông Tin User Cần Sủa</param>
+        /// <param name="editUserModels">Thông tin người dùng sau khi được chỉnh sủa</param>
         /// <returns></returns>
         [AuthenticationFilter]
         public int EditUser(EditUserModels editUserModels)
@@ -239,9 +242,9 @@ namespace Project.Controllers
         }
 
         /// <summary>
-        /// Xóa Thông Tin User
+        /// Phan Đình Kiên : Xóa thông tin người dùng 
         /// </summary>
-        /// <param name="Id">Mã của User</param>
+        /// <param name="Id">Mã người dùng cần xóa</param>
         /// <returns></returns>
         [AuthenticationFilter]
         public int DeleteUser(long Id)
@@ -267,7 +270,7 @@ namespace Project.Controllers
         }
 
         /// <summary>
-        /// đăng nhập thông tin của nhân viên 
+        /// Phan Đinh Kiên : Đăng nhập tài khoản 
         /// </summary>
         /// <returns></returns>
         public string LoginAction()

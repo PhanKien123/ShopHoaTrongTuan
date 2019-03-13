@@ -159,10 +159,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\FeedbackController.cs" />
+    <Compile Include="Controllers\FooterController.cs" />
     <Compile Include="Controllers\GroupUserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductCategoryController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\SlideController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Data\About.cs">
       <DependentUpon>Dbase.tt</DependentUpon>
@@ -232,14 +235,19 @@
     </Compile>
     <Compile Include="Models\AddProductCategory.cs" />
     <Compile Include="Models\AddProductModels.cs" />
+    <Compile Include="Models\AddSlideModels.cs" />
     <Compile Include="Models\AddUserModels.cs" />
     <Compile Include="Models\EditProductCategoryModels.cs" />
     <Compile Include="Models\EditProductModels.cs" />
+    <Compile Include="Models\EditSlideModels.cs" />
     <Compile Include="Models\EditUserModels.cs" />
+    <Compile Include="Models\FooterModels.cs" />
+    <Compile Include="Models\GetFeedbackModel.cs" />
     <Compile Include="Models\GetProductCategoryModels.cs" />
     <Compile Include="Models\GetProductModels.cs" />
     <Compile Include="Models\GetSeclectProductCategoryModels.cs" />
     <Compile Include="Models\GetSelectGroupUserModels.cs" />
+    <Compile Include="Models\GetSlideModels.cs" />
     <Compile Include="Models\GroupUserModels.cs" />
     <Compile Include="Models\GetUserModels.cs" />
     <Compile Include="Models\LoginUserModels.cs" />
@@ -3976,6 +3984,11 @@
     <Content Include="Views\ProductCategory\Create.cshtml" />
     <Content Include="Views\ProductCategory\Update.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\Update.cshtml" />
+    <Content Include="Views\Product\_List.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Feedback\Index.cshtml" />
+    <Content Include="Views\Feedback\_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3983,6 +3996,8 @@
     <Folder Include="Assets\Admin\plugins\jstree\themes\default\" />
     <Folder Include="Images\Product\" />
     <Folder Include="Uploads\" />
+    <Folder Include="Views\Footer\" />
+    <Folder Include="Views\Slide\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -1,0 +1,73 @@
+﻿@using Project.Models
+@using PagedList.Mvc
+@model  PagedList.IPagedList<GetFeedbackModel>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th style="width:50px">ID</th>
+            <th>Họ và tên</th>
+            <th>Email</th>
+            <th>Địa chỉ</th>
+            <th>Điện thoại</th>
+            <th>Nội dung</th>
+            <th style="width:130px">Trạng thái</th>
+            <th style="width:120px">Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+
+            int stt = 0;
+            foreach (GetFeedbackModel data in Model)
+            {
+                stt++;
+                <tr>
+                    <th>@stt</th>
+                    <td>@data.Name</td>
+                    <td>@data.Email</td>
+                    <td>@data.Address</td>
+                    <td>@data.Phone</td>
+                    <td>@data.SubTringContent()</td>
+
+                    <td>
+                        @if (data.Status == true)
+                        {
+
+                            <span class="textStatus">Chưa xem</span>
+
+
+                        }
+
+                        @if (@data.Status == false)
+                        {
+                            <span class="textNoStatus">Đã xem</span>
+
+                        }
+
+
+                    </td>
+                    <td>
+                        <a class="btn btn-warning btn-sm mr-3" onclick="GetFeedbackById(@data.ID)" title="Chi tiết"><i class="fa fa-sticky-note-o bigfonts" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+            }
+
+        }
+    </tbody>
+</table>
+<div class="row ">
+    <div class="offset-6 ">
+        @Html.PagedListPager(Model, Page => Url.Action("Seach", new { Page, name = "", address = "", phone = "" }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions()
+   {
+       HttpMethod = "GET",
+       UpdateTargetId = "Table_feedback"
+   }
+
+           ))
+
+    </div>
+</div>
+<script type="text/javascript">
+
+</script>

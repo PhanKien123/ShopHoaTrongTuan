@@ -13,17 +13,29 @@ namespace Project.Controllers
 {
     public class ProductController : Controller
     {
-        // GET: Product
+        /// <summary>
+        /// Phan Đình Kiên : Hiển thị danh sách sản phẩm 
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             return View();
         }
 
+        /// <summary>
+        /// Phan Đình Kiên : Thêm mới thông tin sản phẩm 
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Create()
         {
             return View();
         }
 
+
+        /// <summary>
+        /// Phan Đình Kiên : Cập nhập thông tin sản phẩm
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Update()
         {
             return View();
@@ -42,7 +54,7 @@ namespace Project.Controllers
         /// <param name="categoryId">Loại doanh mục sản phẩm</param>
         /// <returns></returns>
         [AuthenticationFilter]
-        public PartialViewResult Seach(int page, string name, decimal price, int quantity, long categoryId)
+        public PartialViewResult Seach(int page, string name, int price, int quantity, long categoryId)
         {
             try
             {
@@ -57,14 +69,158 @@ namespace Project.Controllers
                     }
                 }
 
+                // tìm kiếm theo mức giá 
                 if (price != 0)
                 {
-                    query = query.Where(u => u.Price <= price);
+                    if (price == 1)
+                    {
+                        query = query.Where(u => u.Price >=0 &&  u.Price < 500000);
+                    }
+                    if (price == 2)
+                    {
+                        query = query.Where(u => u.Price >= 500000 && u.Price < 1000000);
+                    }
+                    if (price == 3)
+                    {
+                        query = query.Where(u => u.Price >= 1000000 && u.Price < 1500000);
+                    }
+                    if (price == 4)
+                    {
+                        query = query.Where(u => u.Price >= 1500000 && u.Price < 2000000);
+                    }
+                    if (price == 5)
+                    {
+                        query = query.Where(u => u.Price >= 2000000 && u.Price < 2500000);
+                    }
+                    if (price == 6)
+                    {
+                        query = query.Where(u => u.Price >= 2500000 && u.Price < 3000000);
+                    }
+                    if (price == 7)
+                    {
+                        query = query.Where(u => u.Price >= 3000000 && u.Price < 3500000);
+                    }
+                    if (price == 8)
+                    {
+                        query = query.Where(u => u.Price >= 3500000 && u.Price < 4000000);
+                    }
+                    if (price == 9)
+                    {
+                        query = query.Where(u => u.Price >= 4000000 && u.Price < 4500000);
+                    }
+                    if (price == 10)
+                    {
+                        query = query.Where(u => u.Price >= 4500000 && u.Price < 5000000);
+                    }
+                    if (price == 11)
+                    {
+                        query = query.Where(u => u.Price >= 5000000 && u.Price < 5500000);
+                    }
+                    if (price == 12)
+                    {
+                        query = query.Where(u => u.Price >= 5500000 && u.Price < 6000000);
+                    }
+                    if (price == 13)
+                    {
+                        query = query.Where(u => u.Price >= 6000000 && u.Price < 6500000);
+                    }
+                    if (price == 14)
+                    {
+                        query = query.Where(u => u.Price >= 6500000 && u.Price < 7000000);
+                    }
+                    if (price == 15)
+                    {
+                        query = query.Where(u => u.Price >= 7000000 && u.Price < 7500000);
+                    }
+                    if (price == 16)
+                    {
+                        query = query.Where(u => u.Price >= 7500000 && u.Price < 8000000);
+                    }
+                    if (price == 17)
+                    {
+                        query = query.Where(u => u.Price >= 8000000 && u.Price < 8500000);
+                    }
+                    if (price == 18)
+                    {
+                        query = query.Where(u => u.Price >= 8500000 && u.Price < 9000000);
+                    }
+                    if (price == 19)
+                    {
+                        query = query.Where(u => u.Price >= 9000000 && u.Price < 9500000);
+                    }
+                    if (price == 20)
+                    {
+                        query = query.Where(u => u.Price >= 9500000 && u.Price < 10000000);
+                    }
+                    if (price == 21)
+                    {
+                        query = query.Where(u => u.Price > 10000000);
+                    }
+
                 }
 
                 if (quantity != 0)
                 {
-                    query = query.Where(u => u.Quantity <= quantity);
+                    // tìm kiếm thông tin theo số số lượng sản phẩm
+                    if (quantity == 1)
+                    {
+                        query = query.Where(u => u.Quantity >= 0 && u.Quantity < 10);
+
+                    }
+
+                    if (quantity == 2)
+                    {
+                        query = query.Where(u => u.Quantity >= 10 && u.Quantity < 20);
+
+                    }
+
+                    if (quantity == 3)
+                    {
+                        query = query.Where(u => u.Quantity >= 20 && u.Quantity < 30);
+
+                    }
+                    if (quantity == 4)
+                    {
+                        query = query.Where(u => u.Quantity >= 30 && u.Quantity < 40);
+
+                    }
+                    if (quantity == 5)
+                    {
+                        query = query.Where(u => u.Quantity >= 40 && u.Quantity < 50);
+
+                    }
+                    if (quantity == 6)
+                    {
+                        query = query.Where(u => u.Quantity >= 50 && u.Quantity < 60);
+
+                    }
+                    if (quantity == 7)
+                    {
+                        query = query.Where(u => u.Quantity >= 60 && u.Quantity < 70);
+
+                    }
+                    if (quantity == 8)
+                    {
+                        query = query.Where(u => u.Quantity >= 70 && u.Quantity < 80);
+
+                    }
+                    if (quantity == 9)
+                    {
+                        query = query.Where(u => u.Quantity >= 80 && u.Quantity < 90);
+
+                    }
+                    if (quantity == 10)
+                    {
+                        query = query.Where(u => u.Quantity >= 90 && u.Quantity < 100);
+
+                    }
+
+                    if (quantity == 11)
+                    {
+                        query = query.Where(u => u.Quantity >100);
+
+                    }
+                    
                 }
 
                 if (categoryId != 0)
@@ -85,7 +241,7 @@ namespace Project.Controllers
                         ProductCategory productCategory = con.ProductCategories.Find(us.CategoryID);
                         if (productCategory != null)
                         {
-                            productModels.Name = productCategory.Name;
+                            productModels.CategoryName = productCategory.Name;
                         }
                         listProduct.Add(productModels);
                     }
@@ -105,21 +261,19 @@ namespace Project.Controllers
 
 
         /// <summary>
-        /// thêm mới thông tin của sản phẩm
+        /// Phan Đình Kiên : Thêm mới thông tin sản phẩm 
         /// </summary>
         /// <param name="product">Thông tin của sản phẩm sau khi được thêm mới</param>
         /// <returns></returns>
         [AuthenticationFilter]
+        [ValidateInput(false)]
+        [HttpPost]
         public int AddProduct(AddProductModels product)
         {
             try
             {
-                // kiểm tra có trung Product 
-                var query = (from data in con.Products
-                             where data.IsActive == 1
-                             select data);
 
-
+                LoginUserModels loginUserModels = Session["Login"] as LoginUserModels;
                 Product us = new Product()
                 {
 
@@ -136,8 +290,11 @@ namespace Project.Controllers
                     DescriptionIdDetail = product.DescriptionIdDetail,
                     Warranty = product.Warranty,
                     MetaKeywords = product.MetaKeywords,
-                    MetaDescriptions = product.MetaDescriptions
-
+                    MetaDescriptions = product.MetaDescriptions,
+                    CreatedDate = DateTime.Now, 
+                    CreatedBy = loginUserModels.Name, 
+                    ModifiedDate = DateTime.Now, 
+                    ModifiedBy = loginUserModels.Name
                 };
                 con.Products.Add(us);
                 con.SaveChanges();
@@ -212,6 +369,8 @@ namespace Project.Controllers
         /// <param name="editProductModels">Thông tin của loại sản phẩm sau khi được cập nhập</param>
         /// <returns></returns>
         [AuthenticationFilter]
+        [ValidateInput(false)]
+        [HttpPost]
         public int EditProduct(EditProductModels editProductModels)
         {
             try
@@ -289,5 +448,6 @@ namespace Project.Controllers
         }
 
      
+        
     }
 }

@@ -1,4 +1,4 @@
-﻿
+﻿// Phan Đình Kiên : Tìm kiếm thông tin của người dùng 
 function SeachUser() {
     $.ajax({
         url: "/User/Seach",
@@ -15,6 +15,7 @@ function SeachUser() {
     });
 }
 
+// Phan Đình Kiên : Lấy ra danh sách người dùng 
 function GetListGroupUser() {
     $.ajax({
         url: "/GroupUser/GetListGroup",
@@ -47,7 +48,7 @@ function GetListGroupUser() {
 }
 
 
-
+// Phan Đình Kiên : Thêm mới thông tin của người dùng 
 function AddUser() {
 
     $.ajax({
@@ -66,6 +67,8 @@ function AddUser() {
     });
 }
 
+
+// Phan Đình Kiên : Cập nhập thông tin của người dùng 
 function EditUser() {
 
     $.ajax({
@@ -85,6 +88,7 @@ function EditUser() {
 }
 
 
+// Phan Đình Kiên : Lấy thông tin của người dùng theo mã 
 function GetUserById(Id) {
     $.ajax({
         url: "/User/GetUserById",
@@ -108,12 +112,14 @@ function GetUserById(Id) {
 }
 
 
+// Phan Đình Kiên : Hiển thị ô xác nhân xóa thông tin người dùng 
 var IDDelete = 0;
 function ShowFromDeleteUser(Id) {
     IDDelete = Id;
     $("#Delete_Users").show();
 }
 
+// Phan Đình Kiên : Xóa Thông tin người dùng 
 function DelUser() {
     $.ajax({
         url: "/User/DeleteUser",
@@ -130,7 +136,7 @@ function DelUser() {
 }
 
 
-//==> đăng nhập tài khoản 
+//Phan Đình Kiên : Đăng nhập tài khoản vào trang quản lý 
 function LoginAdmin() {
     var userName = $("#txtUserName").val();
     var passWord = $("#txtPassword").val();
@@ -153,8 +159,7 @@ function LoginAdmin() {
 }
 
 
-// phan đình kiên /3/3/2019
-// tìm kiếm loại sản phẩm 
+// Phan Đình Kiên : Tìm kiếm thông tin của loại sản phẩm 
 function SeachProductCategory() {
     $.ajax({
         url: "/ProductCategory/Seach",
@@ -169,6 +174,8 @@ function SeachProductCategory() {
     });
 }
 
+
+// Phan Đình Kiên : Lấy thông tin loại sản phẩm 
 function getGropProductCategory() {
     $.ajax({
         url: "/ProductCategory/GetSelectProductCategory",
@@ -186,10 +193,7 @@ function getGropProductCategory() {
 
 
 
-/*
-+  Người viết : Phan Đình Kiên 
-+  Nội Dung   : Thêm mới thông tin của loại sản phẩm 
-*/
+// Phan Đình Kiên : Thêm mới thông tin loại sản phẩm 
 function AddProductCategory() {
     // Lấy thông tin trong ô nhập liệu thông tin chi tiết của loại sản phẩm 
     var value = CKEDITOR.instances['txtAddDescriptionProductCategoryCkeditor'].getData();
@@ -218,10 +222,7 @@ function AddProductCategory() {
 }
 
 
-/*
-+  Người viết : Phan Đình Kiên 
-+  Nội Dung   : Cập nhập thông tin loại sản phẩm 
-*/
+// Phan Đình Kiên : Cập nhập thông tin loại sản phâm 
 function EditProductCategory() {
     // Lấy thông tin trong ô nhập liệu thông tin chi tiết của loại sản phẩm 
     var value = CKEDITOR.instances['txtEditDescriptionProductCategoryCkeditor'].getData();
@@ -253,14 +254,15 @@ function EditProductCategory() {
 }
 
 
-
-
+// Phan Đình Kiên : Hiển thị ô xác nhận xóa thông tin của loại sản phâm r
 var IDDeleteProductCategory;
 function ShowFromDeletePrductCategory(Id) {
     IDDeleteProductCategory = Id;
     $("#Delete_ProductCategory").show();
 }
 
+
+// Phan Đình Kiên : Xóa Thông tin loại sản phẩm 
 function DelProductCategory() {
     
     $.ajax({
@@ -276,7 +278,120 @@ function DelProductCategory() {
         }
     });
 }
+
+
+// Phan Đình Kiên : Tìm kiếm thông tin của sản phẩm 
+
+function SeachProduct() {
+    $.ajax({
+        url: "/Product/Seach",
+        data: {
+            Page:  1,
+            name: $("#txtSeachNameProduct").val(), 
+            price: $("#txtSeachProductPrice").val(), 
+            quantity: $("#txtSeachQuantityProduct").val(), 
+            categoryId: $("#txtSeachGroupProduct").val()
+        },
+        success: function (result) {
+            $("#Table_Product").html(result);
+        }
+    });
+}
+
+// Phan Đình Kiên : Thêm mới thông tin của sản phẩm 
+
+function AddProduct() {
+    // Lấy thông tin trong ô nhập liệu thông tin chi tiết của loại sản phẩm 
+    var value = CKEDITOR.instances['txtAddDescriptionProductCkeditor'].getData();
+
+    // gán dữ liệu trong thông tin chi tiết của loại sản phẩm vào ô textbox 
+    $('#txtAddDescriptionProduct').val(value);
+    $.ajax({
+        type: "POST",
+        url: "/Product/AddProduct",
+        data: $("#FormAdd_Product").serialize(),
+
+        success: function (result) {
+            if (result == 1) {
+
+                window.location = '/ProductCategory/index';
+                swal("Thông Báo!", "Thêm mới thành công", "success");
+            }
+            else if (result == -1) {
+                swal("Thông báo lỗi", "(Tên sản phẩm không được phép bỏ trống)", "error");
+            }
+            SeachProductCategory();
+        }
+    });
+}
+
+// Phan Đình Kiên : cập nhập thông tin của sản phẩm
+
+// Phan Đình Kiên : Hiển thị ô xác nhận xóa thông tin sản phẩm 
+
+
+// Phan Đình Kiên : Xóa thông tin sản phẩm 
+
+
+
+
+
+
+
+
+
+
+
+// Phan Đình Kiên : load thư viên
 $(document).ready(function () {
     getGropProductCategory();
     GetListGroupUser();
 });
+
+
+function SeachFeedback() {
+    $.ajax({
+        url: "/Feedback/Seach",
+        data: {
+            Page: 1,
+            name: $("#txtSeachNameFeedBack").val(),
+            phone: $("#txtSeachPhone").val(),
+            address: $("#txtSeachAddr").val(),
+        },
+        success: function (result) {
+            $("#Table_feedback").html(result);
+        }
+    });
+}
+
+function GetFeedbackById(Id) {
+    $.ajax({
+        url: "/Feedback/UpdateStatus",
+        data: { Id: Id },
+        success: function (result) {
+
+        }
+    });
+
+    $.ajax({
+        url: "/Feedback/GetFeedbackById",
+        data: { Id: Id },
+        success: function (result) {
+            $("#txtFeedBackID").val(result.ID);
+            $("#txtName").val(result.Name);
+            $("#txtEmail").val(result.Email);
+            $("#txtPhone").val(result.Phone);
+            $("#txtAddress").val(result.Address);
+            $("#txtEditContent").append(result.Content);
+
+            if (result.Status == true) {
+                $('#txtEditStatusFeedBack').val('true').prop('selected', true);
+            }
+            else {
+                $('#txtEditStatusFeedBack').val('false').prop('selected', true);
+            }
+            $("#Modal_CheckFeedBack").show();
+            SeachFeedback();
+        }
+    });
+}

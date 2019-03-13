@@ -8,11 +8,11 @@
 <div class="row">
     <div class="col-xl-12">
         <div class="breadcrumb-holder">
-            <h1 class="main-title float-left">Quản lý người dùng</h1>
+            <h1 class="main-title float-left">QUẢN LÝ THÔNG TIN SẢN PHẨM</h1>
             <ol class="breadcrumb float-right">
                 <li class="breadcrumb-item">Trang chủ</li>
-                <li class="breadcrumb-item active">Người dùng</li>
-                <li class="breadcrumb-item active">Danh sách</li>
+                <li class="breadcrumb-item active">Sản phẩm</li>
+                <li class="breadcrumb-item active">Danh sách sản phẩm</li>
             </ol>
             <div class="clearfix"></div>
         </div>
@@ -23,25 +23,64 @@
     <div class="row ">
         <div class="col-12 col-xl-3 col-sm-12 col-md-3 col-lg-3">
             <div class="form-group">
-                <input class="form-control" name="NameProduct" type="text" placeholder="Họ Tên" id="txtSeachNameProduct" />
-            </div>
-        </div>
-        <div class="col-12 col-xl-3 col-sm-12 col-md-3 col-lg-3">
-            <div class="form-group">
-                <input class="form-control" name="ProductName" type="text" placeholder="Tài Khoản" id="txtSeachProductName" />
-            </div>
-        </div>
-        <div class="col-12 col-xl-3 col-sm-12 col-md-3 col-lg-3">
-            <div class="form-group">
-                <input class="form-control" name="PhoneProduct" type="text" placeholder="Điện Thoại" id="txtSeachPhoneProduct" />
+                <input class="form-control" name="NameProduct" type="text" placeholder="Tên sản phẩm" id="txtSeachNameProduct" />
             </div>
         </div>
         <div class="col-12 col-xl-3 col-sm-12 col-md-3 col-lg-3">
             <div class="form-group">
 
-                <select name="role_id" class="form-control" id="txtSeachGroupProduct">
-                    <option value="0">- Chọn Nhóm -</option>
+                <select name="role_id" class="form-control" id="txtSeachProductPrice" title="giá bán của sản phẩm">
+                    <option value="0">  Chọn mức giá bán   </option>
+                    <option value="1">  0 đến 500 Ngàn   </option>
+                    <option value="2">  500 Ngàn  đến 1 Triệu  </option>
+                    <option value="3">  1 Triệu  đến 1.5 Triệu </option>
+                    <option value="4">  1.5 Triệu  đến 2 Triệu </option>
+                    <option value="5">  2 Triệu  đến 2.5 Triệu </option>
+                    <option value="6">  2.5 Triệu  đến 3 Triệu </option>
+                    <option value="7">  3 Triệu  đến 3.5 Triệu </option>
+                    <option value="8">  3.5 Triệu  đến 4 Triệu </option>
+                    <option value="9">  4 Triệu  đến 4.5 Triệu </option>
+                    <option value="10">  4.5 Triệu  đến 5 Triệu </option>
+                    <option value="11">  5 Triệu  đến 5.5 Triệu </option>
+                    <option value="12">  5.5 Triệu  đến 6 Triệu </option>
+                    <option value="13">  6 Triệu  đến 6.5 Triệu </option>
+                    <option value="14">  6.5 Triệu  đến 7 Triệu </option>
+                    <option value="15">  7 Triệu  đến 7.5 Triệu </option>
+                    <option value="16">  7.5 Triệu  đến 8 Triệu </option>
+                    <option value="17">  8 Triệu  đến 8.5 Triệu </option>
+                    <option value="18">  8.5 Triệu  đến 9 Triệu </option>
+                    <option value="19">  9 Triệu  đến 9.5 Triệu </option>
+                    <option value="20">  9.5 Triệu  đến 10 Triệu </option>
+                    <option value="21">  Trên 10 Triệu</option>
+                </select>
+            </div>
+           
+        </div>
+        <div class="col-12 col-xl-3 col-sm-12 col-md-3 col-lg-3">
+            <div class="form-group">
 
+                <select name="role_id" class="form-control" id="txtSeachQuantityProduct" title="Số lượng sản phẩm đang còn trong kho">
+                    <option value="0">Chọn số lượng sản phẩm </option>
+                    <option value="1">  00 đến 10 </option>
+                    <option value="2">  10 đến 20 </option>
+                    <option value="3">  20 đến 30 </option>
+                    <option value="4">  30 đến 40 </option>
+                    <option value="5">  40 đến 50 </option>
+                    <option value="6">  50 đến 60 </option>
+                    <option value="7">  60 đến 70 </option>
+                    <option value="8">  70 đến 80 </option>
+                    <option value="9">  80 đến 90 </option>
+                    <option value="10">  90 đến 100 </option>
+                    <option value="11">  Trên 100 </option>
+
+                </select>
+            </div>
+        </div>
+        <div class="col-12 col-xl-3 col-sm-12 col-md-3 col-lg-3">
+            <div class="form-group">
+
+                <select name="role_id" class="form-control txtSeachGroupProductCategory" id="txtSeachGroupProduct" title="Tên nhóm Sản Phẩm">
+                    <option value="0">Chọn doanh mục sản phẩm </option>
                 </select>
             </div>
 
@@ -49,8 +88,8 @@
     </div>
     <div class="row">
 
-        <button class="btn btn-primary offset-5" onclick="SeachProduct()">
-            <i class="fa fa-search" aria-hidden="true"></i> Tìm kiếm người dùng
+        <button class="btn btn-primary offset-md-5 offset-sm-0 offset-2  " onclick="SeachProduct()">
+            <i class="fa fa-search" aria-hidden="true"></i> Tìm kiếm sản phẩm
         </button>
 
     </div>
@@ -69,7 +108,7 @@
                     <button class="btn btn-primary btn-sm" onclick="Datahiden()">
                         <i class="fa fa-Product-plus" aria-hidden="true"></i> Thêm mới
                     </button>
-                    <button class="btn btn-primary btn-sm" onclick="window.location='/GroupProduct/Index'">
+                    <button class="btn btn-primary btn-sm" onclick="window.location='/ProductCategory/Index'">
                         <i class="fa fa-caret-square-o-down bigfonts" aria-hidden="true"></i> Nhóm ND
                     </button>
                 </span>
@@ -80,7 +119,9 @@
 
 
             <div class="table-responsive" id="Table_Product">
-             
+                @{
+                    Html.RenderAction("Seach", new { Page = 1, name = "", price = 0, quantity = 0, categoryId = 0 });
+                }
             </div>
 
         </div>
@@ -90,3 +131,8 @@
     <!-- end card -->
 
 </div>
+
+
+
+
+
