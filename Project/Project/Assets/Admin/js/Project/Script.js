@@ -395,3 +395,192 @@ function GetFeedbackById(Id) {
         }
     });
 }
+
+
+//-----------------------------------------------------[CONTENT ]-------------------------------------------------
+
+
+//NGUYỄN NAM ANH : TÌM KIẾM BÀI VIẾT 
+function SearchContent() {
+    $.ajax({
+        url: "/Content/Seach",
+        data: {
+            Page: 1,
+            ContentName: $("#txtSeachNameContent").val(),
+            GroupContent: $("#txtSeachGroupContent").val(),
+        },
+        success: function (result) {
+            $("#Table_Content").html(result);
+        }
+    });
+}
+
+
+// NGUYỄN NAM ANH : THÊM MỚI BÀI VIẾT  ?? 
+function AddContent() {
+
+    $.ajax({
+        url: "/Content/AddContent",
+        data: $("#FormAdd_Content").serialize(),
+        success: function (result) {
+            if (result) {
+                $("#Modal_Content").hide();
+                swal("Thông Báo!", "Thêm mới thành công", "success");
+            }
+            else {
+
+            }
+            SearchContent();
+        }
+    });
+}
+
+//NGUYỄN NAM ANH : SỦA BÀI VIẾT 
+function EditContent() {
+
+    $.ajax({
+        url: "/Content/EditContent",
+        data: $("#Form_EditContent").serialize(),
+        success: function (result) {
+            if (result) {
+                $("#Modal_EditContent").hide();
+                swal("Thông Báo!", "Cập nhập thành công tài khoản", "success");
+            }
+            else {
+
+            }
+            SearchContent();
+        }
+    });
+}
+
+
+// NGUYỄN NAM ANH :  LẤY BÀI VIẾT THEO ID 
+function GetContentById(Id) {
+    $.ajax({
+        url: "/Content/GetContentById",
+        data: { Id: Id },
+        success: function (result) {
+            $("#txtEditIdContent").val(result.ID);
+            $("#txtEditNameContent").val(result.Name);
+            $("#txtEditImage").val(result.Image);
+            $("#txtEditGroupContent").val(result.CategoryID);
+            $("#txtEditWarranty").val(result.Warranty);
+            $("#txtEditTopHot").val(result.TopHot);
+            if (result.Status == true) {
+                $('#txtEditStatusContent').val('true').prop('selected', true);
+            }
+            else {
+                $('#txtEditStatusContent').val('false').prop('selected', true);
+            }
+            $("#Modal_EditContent").show();
+        }
+    });
+}
+
+// NGUYỄN NAM ANH :  XÓA BÁI VIẾT 
+var IDDelete = 0;
+function ShowFromDeleteContent(Id) {
+    IDDelete = Id;
+    $("#Delete_Content").show();
+}
+
+function DelContent() {
+    $.ajax({
+        url: "/Content/DeleteContent",
+        data: { Id: IDDelete },
+        success: function (result) {
+            if (result == 1) {
+                $("#Delete_Content").hide();
+                swal("Thông Báo!", "Xóa tài khoản thành công", "success");
+            }
+
+            SearchContent();
+        }
+    });
+}
+
+//-----------------------------------------------------[CATEGORY ]-------------------------------------------------
+// NGUYỄN NAM ANH:  TÌM KIẾM THÔNG TIN CHUYÊN MỤC BÀI VIÊT
+function SearchCategory() {
+    $.ajax({
+        url: "/Category/Seach",
+        data: {
+            Page: 1,
+            CategoryName: $("txtSearchNameCategory").val(),
+            GroupCategoryId: $("#txtSearchGroupCategory").val(),
+        },
+        success: function (result) {
+            $("#Table_Category").html(result);
+        }
+    });
+}
+
+//NGUYỄN NAM ANH : LẤY THÔNG TIN CHUYÊN MỤC BÀI VIẾT
+function getGroupCategory() {
+    $.ajax({
+        url: "/Category/GetSelectCategory",
+        success: function (result) {
+            $.each(result, function (i, result) {
+                $('.txtSearchGroupCategory').append($('<option>', {
+                    value: result.ID,
+                    text: result.Name
+                }));
+
+            });
+        }
+    });
+}
+
+// NGUYỄN NAM ANH : THÊM MỚI CHUYÊN MỤC BÀI VIẾT 
+function AddCategory() {
+
+
+    var value = CKEDITOR.instances['txtAddDescriptionCategoryCkeditor'].getData();
+    $('#txtAddDescriptionCategory').val(value);
+
+    $.ajax({
+        type: "POST",
+        url: "/Category/AddCategory",
+        data: $("#FormAdd_Category").serialize(),
+
+        success: function (result) {
+            var data = $("#noidung").val();
+            swal("Thông Báo!", data, "success");
+            if (result == 1) {
+                ///window.location = '/ProductCategory/index'; 
+                swal("Thông Báo!", "Thêm mới thành công", "success");
+                alert("Thêm mới thành công");
+            }
+            else {
+
+            }
+            SearchCategory();
+        }
+    });
+}
+
+
+// NGUYỄN NAM ANH : XÓA CHUYÊN MỤC BÀI VIẾT 
+var IDDeleteCategory;
+function ShowFromDeleteCategory(Id) {
+    IDDeleteCategory = Id;
+    $("#Delete_Category").show();
+}
+
+function DelCategory() {
+
+    $.ajax({
+        url: "/Category/DeleteCategory",
+        //type: "post",
+        data: { CategoryId: IDDeleteCategory },
+        success: function (result) {
+            if (result == 1) {
+                $("#Delete_Category").hide();
+                swal("Thông Báo!", "Xóa tài Thành công loại Sản phẩm", "success");
+            }
+            SearchCategory();
+        }
+    });
+}
+
