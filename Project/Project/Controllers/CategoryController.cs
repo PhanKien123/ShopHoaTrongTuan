@@ -16,7 +16,10 @@ namespace Project.Controllers
         //chuỗi connect
         DbConnection con = new DbConnection();
 
-        // GET: Category
+        /// <summary>
+        /// Nguyễn Nam Anh : Hiển thi trang chuyên mục bài viết 
+        /// </summary>
+        /// <returns></returns>
         [AuthenticationFilter]
         public ActionResult Index()
         {
@@ -24,8 +27,12 @@ namespace Project.Controllers
         }
 
         /// <summary>
-        /// tìm kiếm thông tin của category 
+        /// Nguyễn Nam Anh : Tìm kiếm thông tin chuyên mục bài viết 
         /// </summary>
+        /// <param name="Page">Trang </param>
+        /// <param name="CategoryName">Tên chuyên mục bài viết</param>
+        /// <param name="GroupCategoryId">Nhóm chuyên mục </param>
+        /// <returns></returns>
         [HttpGet]
         [AuthenticationFilter]
         public PartialViewResult Seach(int Page, string CategoryName, long GroupCategoryId)
@@ -34,9 +41,9 @@ namespace Project.Controllers
             try
             {
 
-                var query = from x in con.Categories
-                            where x.Active == true
-                            select x;
+                var query = from data in con.Categories
+                            where data.Active == true
+                            select data;
 
                 if (CategoryName != null)
                 {
@@ -99,7 +106,7 @@ namespace Project.Controllers
 
 
         /// <summary>
-        /// update
+        /// Nguyễn Nam Anh : cập nhập thông tin của chuyên mục bài viết 
         /// </summary>
         /// <param name="categoryId"></param>
         /// <returns></returns>
@@ -111,7 +118,7 @@ namespace Project.Controllers
                 var query = con.Categories.Find(categoryId);
                 if (query != null)
                 {
-                    EditCategoryModels editCategoryModels = new EditCategoryModels()
+                    GetCategoryModels getCategoryModels = new GetCategoryModels()
                     {
                         Name = query.Name,
                         MetaTitle = query.MetaTitle,
@@ -130,25 +137,25 @@ namespace Project.Controllers
                         Active = query.Active
 
                     };
-                    return View(editCategoryModels);
+                    return View(getCategoryModels);
                 }
                 else
                 {
-                    return View(new EditCategoryModels());
+                    return View(new GetCategoryModels());
                 }
 
             }
             catch
             {
 
-                return View(new EditCategoryModels());
+                return View(new GetCategoryModels());
             }
 
 
         }
 
         /// <summary>
-        /// Create
+        /// Nguyễn Nam Anh : Hiển thị trang cập nhập chuyên mục bài viết 
         /// </summary>
         /// <returns></returns>
         public ActionResult Create()
@@ -158,7 +165,7 @@ namespace Project.Controllers
 
 
         /// <summary>
-        /// json
+        /// Nguyễn Nam Anh : lấy thông tin chuyên mục bài viết đưa vào select 
         /// </summary>
         /// <returns></returns>
         public JsonResult GetSelectCategory()
@@ -189,10 +196,11 @@ namespace Project.Controllers
             }
         }
 
+        
         /// <summary>
-        /// thêm mới thông tin của loại sản phẩm 
+        /// Nguyễn Nam anh : Thêm mới thông tin chuyên mục 
         /// </summary>
-        /// <param name="addProductCategory">loại sản phẩm sau khi đã thêm</param>
+        /// <param name="addCategory">Thông tin chuyên mục được thêm</param>
         /// <returns></returns>
         [ValidateInput(false)]
         [HttpPost]
@@ -231,15 +239,42 @@ namespace Project.Controllers
 
         
         /// <summary>
-        /// Delete
+        /// Nguyễn Nam Anh : Xóa thông tin chuyên mục bài đăng 
         /// </summary>
-        /// <param name="ProductCategoryId"></param>
+        /// <param name="categoryId"> Mã của thông tin chuyên mục bài đăng</param>
         /// <returns></returns>
         public int DeleteCategory(long categoryId)
         {
             try
             {
+                // Lấy danh sách các bải viết của chuyên mục 
+                var ListContent = from content in con.Contents
+                                  where content.IsActive == Util.Constants.ACTIVE && content.CategoryID == categoryId
+                                  select content; 
+                if(ListContent!= null&& ListContent.Count() > 0)
+                {
+                    foreach(Content content in ListContent)
+                    {
+                        var ListContentTag = from contentTag in con.ContentTags
+                                             where contentTag.ContentID == content.ID
+                                             select contentTag;
+                        foreach(ContentTag contentTag in ListContentTag)
+                        {
+                            // Tiến hành xóa các thẻ của bài viết 
+                            con.ContentTags.Remove(contentTag); 
+
+                        }
+
+                        // Tiến hành xóa các thẻ của bài viết 
+                        content.IsActive = Util.Constants.ACTIVE_FLASE; 
+                    }
+                }
+
+                
+
+                
                 var data = con.Categories.Find(categoryId);
+                
                 if (data != null)
                 {
                     data.Active = false;
@@ -259,16 +294,33 @@ namespace Project.Controllers
 
 
         /// <summary>
-        /// edit
+        /// Phan Đình  Kiên : Cập Nhập thông tin của chuyên mục bài viết 
         /// </summary>
-        /// <param name="editCategoryModels"></param>
+        /// <param name="editCategoryModels">Thông tin của chuyên mục bài viết sau khi được cập nhập</param>
         /// <returns></returns>
         public int EditCategory(EditCategoryModels editCategoryModels)
         {
             try
             {
+                LoginUserModels loginUserModels = Session["Login"] as LoginUserModels;
                 var Data = con.Categories.Find(editCategoryModels.ParentID);
-
+                if(Data!= null)
+                {
+                    Data.Name = editCategoryModels.Name;
+                    Data.MetaTitle = editCategoryModels.MetaTitle;
+                    Data.ParentID = editCategoryModels.ParentID;
+                    Data.DisplayOrder = editCategoryModels.DisplayOrder;
+                    Data.SeoTitle = editCategoryModels.SeoTitle;
+                    Data.ModifiedBy = loginUserModels.Name;
+                    Data.ModifiedDate = DateTime.Now;
+                    Data.MetaKeywords = editCategoryModels.MetaKeywords;
+                    Data.MetaDescriptions = editCategoryModels.MetaDescriptions;
+                    Data.Status = editCategoryModels.Status;
+                    Data.ShowOnHome = editCategoryModels.ShowOnHome;
+                    Data.Image = editCategoryModels.Image;
+                    Data.AltImage = editCategoryModels.AltImage;
+                    con.SaveChanges(); 
+                }
                 return Constants.RETURN_TRUE;
             }
             catch

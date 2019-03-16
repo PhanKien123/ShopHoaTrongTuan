@@ -159,10 +159,16 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
+    <Compile Include="Controllers\FontEndController.cs" />
     <Compile Include="Controllers\FooterController.cs" />
     <Compile Include="Controllers\GroupUserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\OrderDetailController.cs" />
     <Compile Include="Controllers\ProductCategoryController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SlideController.cs" />
@@ -233,16 +239,26 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddCategoryModels.cs" />
+    <Compile Include="Models\AddContentModels.cs" />
     <Compile Include="Models\AddProductCategory.cs" />
     <Compile Include="Models\AddProductModels.cs" />
     <Compile Include="Models\AddSlideModels.cs" />
     <Compile Include="Models\AddUserModels.cs" />
+    <Compile Include="Models\ContactModels.cs" />
+    <Compile Include="Models\EditCategoryModels.cs" />
+    <Compile Include="Models\EditContentModels.cs" />
     <Compile Include="Models\EditProductCategoryModels.cs" />
     <Compile Include="Models\EditProductModels.cs" />
     <Compile Include="Models\EditSlideModels.cs" />
     <Compile Include="Models\EditUserModels.cs" />
+    <Compile Include="Models\FontEnd\GetListProductModels.cs" />
     <Compile Include="Models\FooterModels.cs" />
+    <Compile Include="Models\GetCategoryModels.cs" />
+    <Compile Include="Models\GetContentModels.cs" />
     <Compile Include="Models\GetFeedbackModel.cs" />
+    <Compile Include="Models\GetOrderDetailModels.cs" />
+    <Compile Include="Models\GetOrderModels.cs" />
     <Compile Include="Models\GetProductCategoryModels.cs" />
     <Compile Include="Models\GetProductModels.cs" />
     <Compile Include="Models\GetSeclectProductCategoryModels.cs" />
@@ -3996,7 +4012,11 @@
     <Folder Include="Assets\Admin\plugins\jstree\themes\default\" />
     <Folder Include="Images\Product\" />
     <Folder Include="Uploads\" />
+    <Folder Include="Views\Contact\" />
+    <Folder Include="Views\FontEnd\" />
     <Folder Include="Views\Footer\" />
+    <Folder Include="Views\OrderDetail\" />
+    <Folder Include="Views\Order\" />
     <Folder Include="Views\Slide\" />
   </ItemGroup>
   <ItemGroup>

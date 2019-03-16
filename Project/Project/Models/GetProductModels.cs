@@ -53,5 +53,18 @@ namespace Project.Models
             }
         }
 
+        public string GetStringUrl()
+        {
+            if(this.Image!= null && this.Image.Length!= 0)
+            {
+                return this.Image;
+            }
+            else
+            {
+                return "/Uploads/images/product-04.jpg";
+         
+            }
+        }
+
     }
 }

@@ -15,7 +15,10 @@ namespace Project.Controllers
     {
         DbConnection con = new DbConnection();
 
-        // GET: 
+         /// <summary>
+         /// Nguyễn Nam Anh : Hiện thị thông tin của bài viết 
+         /// </summary>
+         /// <returns></returns>
         [AuthenticationFilter]
         public ActionResult Index()
         {
@@ -23,16 +26,14 @@ namespace Project.Controllers
         }
 
         /// <summary>
-        /// Search Content
+        /// Nguyễn Nam Anh : Tìm kiếm thông tin tài viết 
         /// </summary>
         /// <param name="Page"></param>
         /// <param name="Name"></param>
         /// <param name="CategoryId"></param>
-        /// <param name="topHot"></param>
-        /// <param name="GroupCategory"></param>
         /// <returns></returns>
         [AuthenticationFilter]
-        public PartialViewResult Seach(int Page, string Name, long CategoryId, int topHot, int GroupCategory = 0)
+        public PartialViewResult Seach(int Page, string Name, long CategoryId)
         {
             try
             {
@@ -53,16 +54,7 @@ namespace Project.Controllers
                     query = query.Where(x => x.CategoryID == CategoryId);
                 }
 
-                if (topHot != 0)
-                {
-                    query = query.Where(x => x.TopHot == topHot);
-                }
-
-                if (GroupCategory != 0)
-                {
-                    query = query.Where(u => u.CategoryID == GroupCategory);
-                }
-
+               
 
                 if (query != null && query.Count() > 0)
                 {
@@ -102,9 +94,9 @@ namespace Project.Controllers
 
 
         /// <summary>
-        /// Add content 
+        /// Nguyễn nam Anh : Thêm mới thông tin bài viết 
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="addcontent"></param>
         /// <returns></returns>
         [AuthenticationFilter]
         public int AddContent(AddContentModels addcontent)
@@ -150,9 +142,9 @@ namespace Project.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Nguyến Nam Anh : Lấy thông tin bài viết theo mã 
         /// </summary>
-        /// <param name="Id"></param>
+        /// <param name="Id">Mã cùa bài viết cần lấy</param>
         /// <returns></returns>
         [AuthenticationFilter]
         public JsonResult GetContentById(long Id)
@@ -202,12 +194,12 @@ namespace Project.Controllers
 
 
         /// <summary>
-        /// Sửa Thông Tin Content 
+        /// Nguyễn Nam Anh : cập nhập thông tin của bài viết
         /// </summary>
-        /// <param name="editContentModels">Thông Tin User Cần Sủa</param>
+        /// <param name="editContentModels">Thông tin của bài viết sau khi được cập nhập</param>
         /// <returns></returns>
         [AuthenticationFilter]
-        public int EditUser(EditContentModels editContentModels)
+        public int EditContent(EditContentModels editContentModels)
         {
             try
             {
@@ -251,11 +243,11 @@ namespace Project.Controllers
         }
 
 
-        /// <summary>
-        /// Xóa Thông Tin Content
-        /// </summary>
-        /// <param name="Id">Mã của User</param>
-        /// <returns></returns>
+         /// <summary>
+         /// Nguyễn nam Anh : Xóa thông tin của bài viết 
+         /// </summary>
+         /// <param name="Id">Thông tin bài viết cần xóa</param>
+         /// <returns></returns>
         [AuthenticationFilter]
         public int DeleteContent(long Id)
         {
@@ -263,6 +255,15 @@ namespace Project.Controllers
             try
             {
                 Content content = con.Contents.Find(Id);
+
+                var LisContentTag = from contentTag in con.ContentTags
+                                    where contentTag.ContentID == Id
+                                    select contentTag; 
+                foreach(ContentTag Data in LisContentTag)
+                {
+                    con.ContentTags.Remove(Data); 
+
+                }
                 if (content != null)
                 {
                     content.IsActive = 0;

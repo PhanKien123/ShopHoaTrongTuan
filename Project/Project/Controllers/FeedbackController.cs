@@ -14,22 +14,35 @@ namespace Project.Controllers
 {
     public class FeedbackController : Controller
     {
-        // GET: Feedback
+
+        DbConnection con = new DbConnection();
+
+        /// <summary>
+        /// Cao Xuân Tuấn : Hiển thị danh sách liên hệ của khách hàng 
+        /// </summary>
+        /// <returns></returns>
+        [AuthenticationFilter]
         public ActionResult Index() 
         {
             return View();
         }
 
-        DbConnection con = new DbConnection();
+        /// <summary>
+        /// Cao Xuân Tuấn : Tìm kiếm thông tin liên hệ của khách hàng 
+        /// </summary>
+        /// <param name="Page">Trang </param>
+        /// <param name="name">Tên khách hàng liên hệ </param>
+        /// <param name="phone">số điện thoại của khách hàng</param>
+        /// <param name="address"> địa chỉ của khách hàng </param>
+        /// <returns></returns>
         [AuthenticationFilter]
         public PartialViewResult Seach(int Page,  string name="", string phone="", string address="")
         //PartialViewResult: Trả về 1 trang con
         {
             try
             {
-                var query = from data in con.Feedbacks
-                           
-                            select data;
+
+                var query = from data in con.Feedbacks select data;
 
                 if (name != null)
                 {
@@ -78,15 +91,20 @@ namespace Project.Controllers
                     return PartialView("_List", new List<GetFeedbackModel>().ToPagedList(1, 1));
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                return PartialView("_List", new List<GetFeedbackModel>().ToPagedList(1, 1));
             }
         }
        
 
+        /// <summary>
+        /// Cao Xuân Tuân : hiển thị thông tin liên hệ của khách hàng theo id 
+        /// </summary>
+        /// <param name="Id">id của khách hàng liên hệ tới cửa hàng</param>
+        /// <returns></returns>
         [AuthenticationFilter]
-        public JsonResult GetFeedbackById(long Id)      //JsonResult: trả về chuỗi json(1 trang khác)
+        public JsonResult GetFeedbackById(long Id)      
         {
             try
             {
@@ -102,13 +120,14 @@ namespace Project.Controllers
                         Email = query.Email,
                         Phone = query.Phone,
                         Content= query.Content,
+                        CreatedDate =query.CreatedDate, 
+                        
                     };
                     return Json(getFeedbackModel, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
-                    return Json(new GetFeedbackModel(),
-                        JsonRequestBehavior.AllowGet);
+                    return Json(new GetFeedbackModel(), JsonRequestBehavior.AllowGet);
                 }
             }
             catch 
@@ -117,6 +136,12 @@ namespace Project.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Cao Xuân Tuấn : Trang Thái của thông tin liên hệ 
+        /// </summary>
+        /// <param name="Id"></param>
+        /// 
         public void UpdateStatus(long Id)
         {
             try
