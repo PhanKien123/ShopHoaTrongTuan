@@ -269,9 +269,10 @@ namespace Project.Controllers
                 }
                 return Constants.RETURN_TRUE;
             }
-            catch
+            catch(Exception ex)
             {
-                return Constants.RETURN_FALSE;
+
+                throw ex;
             }
         }
 

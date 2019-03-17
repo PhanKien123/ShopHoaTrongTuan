@@ -320,7 +320,7 @@ function AddProduct() {
             else if (result == -1) {
                 swal("Thông báo lỗi", "(Tên sản phẩm không được phép bỏ trống)", "error");
             }
-            SeachProductCategory();
+            SeachProduct();
         }
     });
 }

@@ -84,6 +84,12 @@
                                     </div>
                                 </div>
 
+                                @*Mô Tả Ngắn về sản phẩm*@
+                                <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="form-group">
+                                        <input class="form-control" name="Name" type="Description" placeholder="Mô tả ngắn về sản phẩm" id="txtAddDescription" title="Tên của loại sản phẩm" />
+                                    </div>
+                                </div>
                                 @*Loại sản phẩm*@
                                 <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
 
@@ -95,19 +101,21 @@
                                 </div>
 
                                 @*Giá bán của sản phẩm*@
-                                <div class="row col-12">
+                                <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
+
                                     <div class="form-group">
                                         <input class="form-control" name="PromotionPrice" value="" type="text" placeholder="Giá bán" id="txtAddPromotionPriceProduct" title="Giá bán của sản phẩm" />
                                     </div>
                                 </div>
 
+                                @*số lượng sản phẩm*@
                                 <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
                                     <div class="form-group">
-                                        <input class="form-control" name="DisplayOrder" type="number" placeholder="Thứ tự hiển thị" id="txtAddDisplayOrderProuctCategory" title="Thứ tự hiển thị trong danh sách" />
+                                        <input class="form-control" name="Quantity" type="number" placeholder="số lượng sản phẩm" id="txtAddDisplayOrderProuctCategory" title="Thứ tự hiển thị trong danh sách" />
                                     </div>
                                 </div>
 
-
+                                @*có hiển thị hiển thị lên trang chủ không*@
                                 <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
 
                                     <div class="form-group">
@@ -120,6 +128,7 @@
                                 </div>
                             </div>
                         </div>
+
 
                         <div class="card col-md-4 pl-1">
                             <div class="card-header card_header">
@@ -160,7 +169,7 @@
                                 BÀI VIẾT GIỚI THIỆU LOẠI SẢN PHẨM
                             </div>
                             <div class="card-body">
-                                <input type="hidden" name="Descriptions" id="txtAddDescriptionProduct" />
+                                <input type="hidden" name="DescriptionIdDetail" id="txtAddDescriptionProduct" />
                                 <input id="txtAddDescriptionProductCkeditor" class="ckeditor" />
                             </div>
                         </div>
@@ -183,6 +192,10 @@
 
     </div>*@
 
+
+
+
+<script src="~/Assets/Admin/js/jquery-3.3.1.js"></script>
 <script>
 
 
@@ -193,11 +206,13 @@
             var fider = new CKFinder();
             fider.selectActionFunction = function (fileUrl) {
                 $(".AddImageProduct ").remove();
-                $("#ImageAddProduct").append("<img src='" + fileUrl + "' style='width: 100%; height: 100%; ' class='AddImageProduct' title='Hình ảnh loại sản phẩm'/>")
+                $("#ImageAddProduct").append("<img src='" + fileUrl + "' style='width: 80%; height: 100%; padding-left:17% ' class='AddImageProduct' title='Hình ảnh loại sản phẩm'/>")
                 $('#txtAddImageProduct').val(fileUrl);
             }
             fider.popup();
         })
     });
 </script>
+
+
 

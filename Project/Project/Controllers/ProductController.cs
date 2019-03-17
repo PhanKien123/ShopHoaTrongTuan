@@ -36,9 +36,46 @@ namespace Project.Controllers
         /// Phan Đình Kiên : Cập nhập thông tin sản phẩm
         /// </summary>
         /// <returns></returns>
-        public ActionResult Update()
+        public ActionResult Update(long Id)
         {
-            return View();
+            var data = con.Products.Find(Id); 
+            if(data!= null)
+            {
+                var dataCategory = from CatePro in con.ProductCategories
+                                   where CatePro.Active == true 
+                                   select CatePro; 
+
+                EditProductModels editProductModels = new EditProductModels()
+                {
+                    ID = data.ID,
+                    Name = data.Name,
+                    CreatedDate = data.CreatedDate,
+                    CreatedBy = data.CreatedBy,
+                    ModifiedDate = data.ModifiedDate,
+                    ModifiedBy = data.ModifiedBy,
+                    MetaTitle = data.MetaTitle,
+                    MetaKeywords = data.MetaKeywords,
+                    MetaDescriptions = data.MetaDescriptions,
+                    Warranty = data.Warranty,
+                    Status = data.Status,
+                    TopHot = data.TopHot,
+                    Sale = data.Sale,
+                    ViewCount = data.ViewCount,
+                    Image = data.Image,
+                    AltImage = data.AltImage,
+                    CategoryID = data.CategoryID,
+                    Price = data.Price,
+                    Description = data.Description,
+                    DescriptionIdDetail = data.DescriptionIdDetail,
+                    MoreImages = data.MoreImages,
+                    Percent = data.Percent,
+                    PromotionPrice = data.PromotionPrice,
+                    Quantity = data.Quantity
+                };
+                
+                return View(editProductModels); 
+            }
+            return View(new EditProductModels());
         }
 
 
@@ -291,10 +328,13 @@ namespace Project.Controllers
                     Warranty = product.Warranty,
                     MetaKeywords = product.MetaKeywords,
                     MetaDescriptions = product.MetaDescriptions,
-                    CreatedDate = DateTime.Now, 
-                    CreatedBy = loginUserModels.Name, 
-                    ModifiedDate = DateTime.Now, 
-                    ModifiedBy = loginUserModels.Name
+                    CreatedDate = DateTime.Now,
+                    CreatedBy = loginUserModels.Name,
+                    ModifiedDate = DateTime.Now,
+                    ModifiedBy = loginUserModels.Name,
+                    IsActive = 1,
+                    ViewCount = 1
+
                 };
                 con.Products.Add(us);
                 con.SaveChanges();

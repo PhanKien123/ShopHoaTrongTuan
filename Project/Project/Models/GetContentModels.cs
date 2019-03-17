@@ -50,5 +50,28 @@ namespace Project.Models
                 return ModifiedDate.ToString("dd/MM.yyyy");
             }
         }
+        public string GetParentName()
+        {
+            if (this.CategoryName == null || this.CategoryName == "")
+            {
+                return "Doanh mục gốc";
+            }
+            else
+            {
+                return this.CategoryName;
+            }
+        }
+
+        public string GetImage()
+        {
+            if (this.Image == null || this.Image == "")
+            {
+                return Util.Constants.NO_PART;
+            }
+            else
+            {
+                return this.Image;
+            }
+        }
     }
 }

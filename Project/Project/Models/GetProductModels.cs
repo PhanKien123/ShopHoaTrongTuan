@@ -34,6 +34,7 @@ namespace Project.Models
         public Nullable<int> Sale { get; set; }
         public Nullable<int> ViewCount { get; set; }
         public Nullable<int> IsActive { get; set; }
+         public Nullable<bool> ShowHome { get; set; }
 
         public string GetStringCreateDate
         {
@@ -66,5 +67,6 @@ namespace Project.Models
             }
         }
 
+   
     }
 }

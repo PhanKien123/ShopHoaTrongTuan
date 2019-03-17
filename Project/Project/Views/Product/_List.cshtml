@@ -32,12 +32,12 @@
                     <td>
                         @data.Name
                     </td>
-                    <td>@data.Price</td>
+                    <td>@data.PromotionPrice</td>
                     <td>@data.Quantity</td>
                     <td>@data.CategoryName</td>
                     <td style="width:20px">
                         <div class="row">
-                            <a class="btn btn-primary btn-sm mr-1" onclick="window.location='/ProductCategory/Update?ProductCategoryId=@data.ID'" title="Sửa"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            <a class="btn btn-primary btn-sm mr-1" onclick="window.location='/Product/Update?Id=@data.ID'" title="Sửa"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                             <a class="btn btn-danger btn-sm mr-1" onclick="ShowFromDeletePrductCategory(@data.ID)" title="Xóa"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                             <a class="btn btn-success btn-sm" onclick="Edit_ProductCategoryShow()" title="Bài viết"><i class="fa fa-file-word-o bigfonts" aria-hidden="true"></i></a>
                         </div>
