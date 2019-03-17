@@ -3212,8 +3212,16 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 
+div.idContainer {
+    padding-left: 78px;
+    padding-right: 78px;
+}
 
-
+.card-header {
+    background-color: #576b84;
+    color: white;
+    border: 1px solid #dfdfdf;
+}
 /*==================================================================
   RESPONSIVE RESPONSIVE RESPONSIVE RESPONSIVE RESPONSIVE RESPONSIVE
 ==================================================================*/
@@ -3221,6 +3229,10 @@ input.num-product::-webkit-inner-spin-button {
 /*//////////////////////////////////////////////////////////////////
 [ XL ]*/
 @media (max-width: 1199px) {
+    div.idContainer {
+        padding-left: 58px;
+        padding-right: 58px;
+    }
   .m-0-xl {margin: 0;}
   .m-lr-0-xl {margin-left: 0; margin-right: 0;}
   .m-lr-15-xl {margin-left: 15px; margin-right: 15px;}
@@ -3247,6 +3259,10 @@ input.num-product::-webkit-inner-spin-button {
 /*//////////////////////////////////////////////////////////////////
 [ LG ]*/
 @media (max-width: 991px) {
+    div.idContainer {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
   .m-0-lg {margin: 0;}
   .m-lr-0-lg {margin-left: 0; margin-right: 0;}
   .m-lr-15-lg {margin-left: 15px; margin-right: 15px;}
@@ -3281,6 +3297,10 @@ input.num-product::-webkit-inner-spin-button {
 /*//////////////////////////////////////////////////////////////////
 [ MD ]*/
 @media (max-width: 767px) {
+    div.idContainer {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
   .m-0-md {margin: 0;}
   .m-lr-0-md {margin-left: 0; margin-right: 0;}
   .m-lr-15-md {margin-left: 15px; margin-right: 15px;}
@@ -3310,6 +3330,10 @@ input.num-product::-webkit-inner-spin-button {
 /*//////////////////////////////////////////////////////////////////
 [ SM ]*/
 @media (max-width: 575px) {
+    div.idContainer {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
   .m-0-sm {margin: 0;}
   .m-lr-0-sm {margin-left: 0; margin-right: 0;}
   .m-lr-15-sm {margin-left: 15px; margin-right: 15px;}
@@ -3359,6 +3383,10 @@ input.num-product::-webkit-inner-spin-button {
 /*//////////////////////////////////////////////////////////////////
 [ SSM ]*/
 @media (max-width: 480px) {
+    div.idContainer {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
   .m-0-ssm {margin: 0;}
   .m-lr-0-ssm {margin-left: 0; margin-right: 0;}
   .m-lr-15-ssm {margin-left: 15px; margin-right: 15px;}
