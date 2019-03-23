@@ -7,6 +7,7 @@ namespace Project.Models
 {
     public class AddProductModels
     {
+        public long ID { get; set; }
         public string Name { get; set; }
         public string MetaTitle { get; set; }
         public string Description { get; set; }
@@ -15,14 +16,18 @@ namespace Project.Models
         public Nullable<decimal> Price { get; set; }
         public Nullable<int> Percent { get; set; }
         public Nullable<decimal> PromotionPrice { get; set; }
-        //DateTime Date = (DateTime)CreatedDate;
         public int Quantity { get; set; }
         public Nullable<long> CategoryID { get; set; }
-        public string CategoryName { get; set; } //bo
         public string DescriptionIdDetail { get; set; }
         public Nullable<int> Warranty { get; set; }
         public string MetaKeywords { get; set; }
-        public string MetaDescriptions { get; set; } 
+        public string MetaDescriptions { get; set; }
+        public Nullable<bool> Status { get; set; }
+        public Nullable<int> TopHot { get; set; }
+        public Nullable<int> Sale { get; set; }
+        public Nullable<int> ViewCount { get; set; }
+        public Nullable<int> IsActive { get; set; }
+        public string SeoTitle { get; set; }
 
     }
 }

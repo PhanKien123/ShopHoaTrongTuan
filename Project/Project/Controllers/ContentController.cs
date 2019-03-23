@@ -13,7 +13,7 @@ namespace Project.Controllers
 {
     public class ContentController : Controller
     {
-        DbConnection con = new DbConnection();
+        Dbconnection con = new Dbconnection();
 
          /// <summary>
          /// Nguyễn Nam Anh : Hiện thị thông tin của bài viết 

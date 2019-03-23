@@ -23,7 +23,7 @@ namespace Project.Controllers
            
             return View();
         }
-        DbConnection con = new DbConnection();
+        Dbconnection con = new Dbconnection();
 
         /// <summary>
         /// Phan Đình Kiên : Tìm kiếm thông tin người dùng 

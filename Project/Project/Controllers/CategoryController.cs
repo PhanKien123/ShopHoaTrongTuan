@@ -14,7 +14,7 @@ namespace Project.Controllers
     public class CategoryController : Controller
     {
         //chuỗi connect
-        DbConnection con = new DbConnection();
+        Dbconnection con = new Dbconnection();
 
         /// <summary>
         /// Nguyễn Nam Anh : Hiển thi trang chuyên mục bài viết 

@@ -35,5 +35,6 @@ namespace Project.Data
         public Nullable<int> ViewCount { get; set; }
         public Nullable<int> IsActive { get; set; }
         public string Tag { get; set; }
+        public string SeoTitle { get; set; }
     }
 }

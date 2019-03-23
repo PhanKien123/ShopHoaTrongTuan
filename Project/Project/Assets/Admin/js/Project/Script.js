@@ -305,7 +305,7 @@ function AddProduct() {
     var value = CKEDITOR.instances['txtAddDescriptionProductCkeditor'].getData();
 
     // gán dữ liệu trong thông tin chi tiết của loại sản phẩm vào ô textbox 
-    $('#txtAddDescriptionProduct').val(value);
+    $('#txtAddDescriptionIdDetailProduct').val(value);
     $.ajax({
         type: "POST",
         url: "/Product/AddProduct",
@@ -314,7 +314,7 @@ function AddProduct() {
         success: function (result) {
             if (result == 1) {
 
-                window.location = '/ProductCategory/index';
+                window.location = '/Product/index';
                 swal("Thông Báo!", "Thêm mới thành công", "success");
             }
             else if (result == -1) {
@@ -325,15 +325,73 @@ function AddProduct() {
     });
 }
 
-// Phan Đình Kiên : cập nhập thông tin của sản phẩm
+
+// Phan Đình Kiên : Cập nhập thông tin  sản phâm 
+function EditProduct() {
+    // Lấy thông tin trong ô nhập liệu thông tin chi tiết của loại sản phẩm 
+    var value = CKEDITOR.instances['txtEditDescriptionProductCkeditor'].getData();
+
+    // gán dữ liệu trong thông tin chi tiết của loại sản phẩm vào ô textbox 
+    $('#txtEditDescriptionIdDetailProduct').val(value);
+
+
+    $.ajax({
+        type: "POST",
+        url: "/Product/EditProduct",
+        data: $("#FormEdit_Product").serialize(),
+
+        success: function (result) {
+            if (result == 1) {
+
+                window.location = '/Product/index';
+                swal("Thông Báo!", "Cập nhập thành công", "success");
+            }
+            else if (result == -1) {
+                swal("Thông báo lỗi", "(Tên  sản phẩm không được phép bỏ trống)", "error");
+            }
+            else {
+                swal("Thông báo lỗi", "(Cập nhập  sản phẩm thất bại )", "error");
+            }
+        }
+    });
+}
+
+
 
 // Phan Đình Kiên : Hiển thị ô xác nhận xóa thông tin sản phẩm 
 
+var IDDeleteProduct;
+function ShowFromDeleteProduct(Id) {
+    IDDeleteProduct = Id;
+    $("#Delete_Product").show();
+}
 
-// Phan Đình Kiên : Xóa thông tin sản phẩm 
+
+// Phan Đình Kiên : Xóa Thông tin  sản phẩm 
+function DelProduct() {
+
+    $.ajax({
+        url: "/Product/DeleteProduct",
+        //type: "post",
+        data: { Id: IDDeleteProduct },
+        success: function (result) {
+            if (result == 1) {
+                $("#Delete_Product").hide();
+                swal("Thông Báo!", "Xóa tài Thành công loại Sản phẩm", "success");
+            }
+            SeachProduct();
+        }
+    });
+}
 
 
 
+// Phan Đình Kiên : Tiến hành gọi modall add hình ảnh chi tiết
+
+function LoadModalImage() {
+    $("#modal_ListImage").show(); 
+
+}
 
 
 

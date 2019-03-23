@@ -39,5 +39,6 @@ namespace Project.Data
         public Nullable<int> Sale { get; set; }
         public Nullable<int> ViewCount { get; set; }
         public Nullable<int> IsActive { get; set; }
+        public string SeoTitle { get; set; }
     }
 }

@@ -52,7 +52,7 @@ namespace Project.Controllers
         
         }
 
-        DbConnection con = new DbConnection();
+        Dbconnection con = new Dbconnection();
 
         public JsonResult GetListGroup()
         {

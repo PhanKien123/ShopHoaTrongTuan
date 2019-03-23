@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
+using System.Xml.Linq;
 
 namespace Project.Controllers
 {
@@ -43,7 +45,7 @@ namespace Project.Controllers
             {
                 var dataCategory = from CatePro in con.ProductCategories
                                    where CatePro.Active == true 
-                                   select CatePro; 
+                                   select CatePro;
 
                 EditProductModels editProductModels = new EditProductModels()
                 {
@@ -52,6 +54,7 @@ namespace Project.Controllers
                     CreatedDate = data.CreatedDate,
                     CreatedBy = data.CreatedBy,
                     ModifiedDate = data.ModifiedDate,
+                    SeoTitle = data.SeoTitle,
                     ModifiedBy = data.ModifiedBy,
                     MetaTitle = data.MetaTitle,
                     MetaKeywords = data.MetaKeywords,
@@ -71,7 +74,14 @@ namespace Project.Controllers
                     Percent = data.Percent,
                     PromotionPrice = data.PromotionPrice,
                     Quantity = data.Quantity
+                   
                 };
+
+                var query = con.ProductCategories.Find(data.CategoryID); 
+                if(query!= null)
+                {
+                    editProductModels.CategoryName = query.Name; 
+                }
                 
                 return View(editProductModels); 
             }
@@ -79,7 +89,7 @@ namespace Project.Controllers
         }
 
 
-        DbConnection con = new DbConnection();
+        Dbconnection con = new Dbconnection();
 
         /// <summary>
         /// Phan Đình Kiên : Tìm kiếm thông tin của sản phẩm 
@@ -91,7 +101,7 @@ namespace Project.Controllers
         /// <param name="categoryId">Loại doanh mục sản phẩm</param>
         /// <returns></returns>
         [AuthenticationFilter]
-        public PartialViewResult Seach(int page, string name, int price, int quantity, long categoryId)
+        public PartialViewResult Seach(int page, string name, int? price, int? quantity, long? categoryId)
         {
             try
             {
@@ -268,14 +278,16 @@ namespace Project.Controllers
                 if (query != null && query.Count() > 0)
                 {
                     List<GetProductModels> listProduct = new List<GetProductModels>();
-                    foreach (Product us in query)
+                    foreach (Product data in query)
                     {
                         GetProductModels productModels = new GetProductModels();
-                        productModels.Name = us.Name;
-                        productModels.Price = us.Price;
-                        productModels.Quantity = us.Quantity;
-                        productModels.CategoryID = us.CategoryID;
-                        ProductCategory productCategory = con.ProductCategories.Find(us.CategoryID);
+                        productModels.ID = data.ID; 
+                        productModels.Name = data.Name;
+                        productModels.PromotionPrice = data.PromotionPrice;
+                        productModels.Quantity = data.Quantity;
+                        productModels.Image = data.Image; 
+                        productModels.CategoryID = data.CategoryID;
+                        ProductCategory productCategory = con.ProductCategories.Find(data.CategoryID);
                         if (productCategory != null)
                         {
                             productModels.CategoryName = productCategory.Name;
@@ -290,9 +302,9 @@ namespace Project.Controllers
                 }
             }
 
-            catch (Exception ex)
+            catch 
             {
-                throw ex;
+                return PartialView("_List", new List<GetProductModels>().ToPagedList(1, 1));
             }
         }
 
@@ -313,6 +325,7 @@ namespace Project.Controllers
                 LoginUserModels loginUserModels = Session["Login"] as LoginUserModels;
                 Product us = new Product()
                 {
+                    SeoTitle = product.SeoTitle,
 
                     Name = product.Name,
                     MetaTitle = product.MetaTitle,
@@ -333,8 +346,9 @@ namespace Project.Controllers
                     ModifiedDate = DateTime.Now,
                     ModifiedBy = loginUserModels.Name,
                     IsActive = 1,
-                    ViewCount = 1
-
+                    ViewCount = 1,
+                    TopHot = product.TopHot,
+                    Status = true
                 };
                 con.Products.Add(us);
                 con.SaveChanges();
@@ -441,9 +455,7 @@ namespace Project.Controllers
                     product.MetaDescriptions = editProductModels.MetaDescriptions;
                     product.Status = editProductModels.Status;
                     product.TopHot = editProductModels.TopHot;
-                    product.Sale = editProductModels.Sale;
-                    product.ViewCount = editProductModels.ViewCount;
-                    product.IsActive = editProductModels.IsActive;
+                    product.SeoTitle = editProductModels.SeoTitle; 
                   
                     con.SaveChanges();
                     return Constants.RETURN_TRUE;
@@ -487,7 +499,78 @@ namespace Project.Controllers
             }
         }
 
-     
-        
+        /// <summary>
+        /// Phan Đình Kiên 
+        /// </summary>
+        /// <param name="id">Hiển Thị danh sách ảnh chi tiết</param>
+        /// <returns></returns>
+        public JsonResult LoadListImage(long Id)
+        {
+            try
+            {
+                Product product = con.Products.Find(Id); 
+                if(product!= null)
+                {
+                    var images = product.MoreImages;
+                    XElement xElement = XElement.Parse(images);
+                    List<string> List = new List<string>(); 
+                    foreach(XElement data in xElement.Elements())
+                    {
+                        List.Add(data.Value); 
+                    }
+                    return Json(List, JsonRequestBehavior.AllowGet);
+                   
+                }
+                return Json(new List<string>(), JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+                return Json(new List<string>(), JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        /// <summary>
+        /// Phan Đình Kiên : Thêm mới danh sách ảnh chi tiết
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public int AddListProduct(string image,long Id)
+        {
+            try
+            {
+                JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
+                var listimage = javaScriptSerializer.Deserialize<List<string>>(image);
+                XElement xElement = new XElement("Images");
+                foreach (var item in listimage)
+                {
+                    if(item!= null&& item.Length>20)
+                    {
+                        string strisubs = item.Substring(22);
+                        xElement.Add(new XElement("Image", strisubs));
+                    }
+                    else
+                    {
+                        xElement.Add(new XElement("Image", item));
+                    }
+                }
+                Product product = con.Products.Find(Id);
+                if (product != null)
+                {
+                    product.MoreImages = xElement.ToString();
+                    con.SaveChanges(); 
+                }
+                return 1; 
+            }
+            catch
+            {
+                return 0; 
+            }
+            
+        }
+
+
+
     }
 }

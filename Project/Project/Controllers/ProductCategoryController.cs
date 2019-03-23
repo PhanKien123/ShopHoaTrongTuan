@@ -24,7 +24,7 @@ namespace Project.Controllers
         /// <summary>
         /// tìm kiếm thông tin của loại sản phẩm 
         /// </summary>
-        DbConnection con = new DbConnection();
+        Dbconnection con = new Dbconnection();
         
         /// <summary>
         /// Phan Đình Kiên : Tìm kiếm thông tin loại sản phẩm

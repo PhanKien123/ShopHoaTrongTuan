@@ -32,9 +32,10 @@
                     <button class="btn btn-primary btn-sm" onclick="AddProduct()">
                         <i class="fa fa-user-plus" aria-hidden="true"></i> Thêm ngay
                     </button>
-                    <button class="btn btn-primary btn-sm" id="btnAddImageProducts">
+                    <button class="btn btn-danger btn-sm" id="btnAddImageProducts">
                         <i class="fa fa-caret-square-o-down bigfonts" aria-hidden="true"></i> Chọn ảnh
                     </button>
+                    
                 </span>
             </div>
             <!-- end card-header -->
@@ -49,6 +50,7 @@
                                 HÌNH ẢNH CỦA SẢN PHẨM
                             </div>
                             <div class="card-body">
+                                @*Hình ảnh của sản phẩm*@
                                 <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
                                     <div class="row">
                                         <div class="w-100 h-25 pl-2 pr-2" id="ImageAddProduct">
@@ -56,7 +58,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                @*mô tả thông tin của sản phẩm theo hình ảnh*@
                                 <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
                                     <input type="hidden" name="image" value="" id="txtAddImageProduct" />
                                     <div class="row mt-3">
@@ -72,67 +74,111 @@
                         </div>
 
 
-                        <div class="card col-md-4 pr-1">
+                        <div class="card col-md-5 pr-1">
                             <div class="card-header card_header">
                                 THÔNG TIN CỦA SẢN PHẨM
                             </div>
                             <div class="card-body">
-                                @*Tên sản phẩm*@
+
                                 <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="form-group">
-                                        <input class="form-control" name="Name" type="text" placeholder="Tên của sản phẩm" id="txtAddProductName" title="Tên của loại sản phẩm" />
-                                    </div>
-                                </div>
-
-                                @*Mô Tả Ngắn về sản phẩm*@
-                                <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="form-group">
-                                        <input class="form-control" name="Name" type="Description" placeholder="Mô tả ngắn về sản phẩm" id="txtAddDescription" title="Tên của loại sản phẩm" />
-                                    </div>
-                                </div>
-                                @*Loại sản phẩm*@
-                                <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
-
-                                    <div class="form-group">
-                                        <select name="ParentID" class="form-control txtSeachGroupProductCategory" id="txtAddProductParentId" title="tên nhóm của loại sản phẩm">
-                                            <option value="">Chọn nhóm loại sản phẩm -</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                @*Giá bán của sản phẩm*@
-                                <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
-
-                                    <div class="form-group">
-                                        <input class="form-control" name="PromotionPrice" value="" type="text" placeholder="Giá bán" id="txtAddPromotionPriceProduct" title="Giá bán của sản phẩm" />
-                                    </div>
-                                </div>
-
-                                @*số lượng sản phẩm*@
-                                <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="form-group">
-                                        <input class="form-control" name="Quantity" type="number" placeholder="số lượng sản phẩm" id="txtAddDisplayOrderProuctCategory" title="Thứ tự hiển thị trong danh sách" />
-                                    </div>
-                                </div>
-
-                                @*có hiển thị hiển thị lên trang chủ không*@
-                                <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
-
-                                    <div class="form-group">
-                                        <select name="ShowOnHome" class="form-control" required id="txtAddShowOnHomeProduct" title="Có cho phép loại sản phẩm có hiển thị lên trang chủ không">
-                                            <option value="true">hiển thị lên trang chủ  </option>
-                                            <option value="false">không hiển thị lên trang chủ </option>
-                                        </select>
+                                    <div class="row">
+                                        <div class="col-12 col-xl-6 col-sm-12 col-md-12 col-lg-6">
+                                            <div class="form-group">
+                                                <input class="form-control" name="Name" type="text" placeholder="Tên của sản phâm" id="txtAddNameProduct" title="Tên của sản phẩm" />
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-xl-6 col-sm-12 col-md-12 col-lg-6">
+                                            <div class="form-group">
+                                                <input class="form-control" name="Description" type="text" placeholder="Mô tả ngắn về sản phẩm" id="txtAddDescriptionProduct" title="Tên của loại sản phẩm" />
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </div>
+
+                                <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="row">
+                                        <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="row">
+                                                <div class="col-12 col-xl-6 col-sm-12 col-md-12 col-lg-6">
+                                                    @*Phân loại sản phẩm*@
+                                                    <div class="form-group">
+                                                        <select name="CategoryID" class="form-control txtSeachGroupProductCategory" id="txtAddCategoryIDProduct" title="tên nhóm của loại sản phẩm">
+                                                            <option value="">loại sản phẩm -</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-xl-6 col-sm-12 col-md-12 col-lg-6">
+                                                    @*Giá bán của sản phẩm*@
+                                                    <div class="form-group">
+                                                        <input class="form-control" name="PromotionPrice" value="" type="text" placeholder="Giá bán" id="txtAddPromotionPriceProduct" title="Giá bán của sản phẩm" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="row">
+                                        <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="row">
+                                                @*số lượng sản phẩm*@
+                                                <div class="col-12 col-xl-6 col-sm-12 col-md-12 col-lg-6">
+                                                    <div class="form-group">
+                                                        <input class="form-control" name="Quantity" type="number" placeholder="số lượng sản phẩm" id="txtAddDisplayOrderProuctCategory" title="Số lương sản phẩm" />
+                                                    </div>
+                                                </div>
+                                                @*Hiển thị trang chủ*@
+                                                <div class="col-12 col-xl-6 col-sm-12 col-md-12 col-lg-6">
+                                                    <div class="form-group">
+                                                        <select name="ShowOnHome" class="form-control" required id="txtAddShowOnHomeProduct" title="Có cho phép loại sản phẩm có hiển thị lên trang chủ không">
+                                                            <option value="true">hiển thị lên trang chủ  </option>
+                                                            <option value="false">không hiển thị lên trang chủ </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="row">
+                                        <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="row">
+                                                @*thời gian bảo hành*@
+                                                <div class="col-12 col-xl-6 col-sm-12 col-md-12 col-lg-6">
+                                                    <div class="form-group">
+                                                        <input class="form-control" name="Warranty" type="number" placeholder="số lượng sản phẩm" id="txtAddWarrantyProduct" title="Thời gian bào hành sản phẩm là bao nhiêu tháng" />
+                                                    </div>
+                                                </div>
+                                                @*Phân Loại Sản phẩm theo chuyên mục *@
+                                                <div class="col-12 col-xl-6 col-sm-12 col-md-12 col-lg-6">
+                                                    <div class="form-group">
+                                                        <select name="TopHot" class="form-control" required id="txtAddTopHotProduct" title="Phân loại sản phẩm theo chuyên mục">
+                                                            <option value="1">Sản phẩm mới  </option>
+                                                            <option value="2">Sản phẩm bán chạy </option>
+                                                            <option value="3">Sản phẩm giảm giá </option>
+                                                            <option value="4">Cây theo phong thủy </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
 
-                        <div class="card col-md-4 pl-1">
+                        <div class="card col-md-3 pl-1">
                             <div class="card-header card_header">
-                                THÔNG TIN SEO LOẠI SẢN PHẨM
+                                THÔNG TIN SEO CỦA SẢN PHẨM 
                             </div>
                             <div class="card-body">
                                 <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
@@ -166,10 +212,10 @@
                     <div class="row mt-3">
                         <div class="card col-md-12 pr-1">
                             <div class="card-header card_header">
-                                BÀI VIẾT GIỚI THIỆU LOẠI SẢN PHẨM
+                                B
                             </div>
                             <div class="card-body">
-                                <input type="hidden" name="DescriptionIdDetail" id="txtAddDescriptionProduct" />
+                                <input type="hidden" name="DescriptionIdDetail" id="txtAddDescriptionIdDetailProduct" />
                                 <input id="txtAddDescriptionProductCkeditor" class="ckeditor" />
                             </div>
                         </div>

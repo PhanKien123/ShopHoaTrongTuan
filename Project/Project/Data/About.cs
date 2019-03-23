@@ -27,5 +27,7 @@ namespace Project.Data
         public string MetaKeywords { get; set; }
         public string MetaDescriptions { get; set; }
         public Nullable<bool> Status { get; set; }
+        public string SeoTitle { get; set; }
+        public Nullable<bool> IsActive { get; set; }
     }
 }

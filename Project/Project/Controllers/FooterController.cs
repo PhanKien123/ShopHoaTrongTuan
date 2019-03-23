@@ -11,7 +11,7 @@ namespace Project.Controllers
     public class FooterController : Controller
     {
         // GET: Footer
-        DbConnection con = new DbConnection();
+        Dbconnection con = new Dbconnection();
 
         /// <summary>
         /// Phan Đình Kiên : tiến hành lấy ra thông tin của footer 

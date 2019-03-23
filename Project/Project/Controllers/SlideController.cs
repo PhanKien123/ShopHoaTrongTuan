@@ -23,7 +23,7 @@ namespace Project.Controllers
 
             return View();
         }
-        DbConnection con = new DbConnection();
+        Dbconnection con = new Dbconnection();
 
 
 

@@ -34,7 +34,7 @@ namespace Project.Models
         public Nullable<int> Sale { get; set; }
         public Nullable<int> ViewCount { get; set; }
         public Nullable<int> IsActive { get; set; }
-
+        public string SeoTitle { get; set; }
         public string GetStringCreateDate
         {
             get

@@ -11,7 +11,7 @@ namespace Project.Controllers
 {
     public class FontEndController : Controller
     {
-        DbConnection con = new DbConnection(); 
+        Dbconnection con = new Dbconnection(); 
         // GET: FontEnd
         public ActionResult Index()
         {

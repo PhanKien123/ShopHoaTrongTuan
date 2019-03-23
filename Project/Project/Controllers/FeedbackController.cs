@@ -15,7 +15,7 @@ namespace Project.Controllers
     public class FeedbackController : Controller
     {
 
-        DbConnection con = new DbConnection();
+        Dbconnection con = new Dbconnection();
 
         /// <summary>
         /// Cao Xuân Tuấn : Hiển thị danh sách liên hệ của khách hàng 

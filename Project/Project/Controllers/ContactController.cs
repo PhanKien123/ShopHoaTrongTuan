@@ -11,7 +11,7 @@ namespace Project.Controllers
     public class ContactController : Controller
     {
         
-        DbConnection con = new DbConnection();
+        Dbconnection con = new Dbconnection();
 
         /// <summary>
         /// Phan Đình Kiên : Hiển thị thông tin liên hệ 

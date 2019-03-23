@@ -13,10 +13,10 @@ namespace Project.Data
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DbConnection : DbContext
+    public partial class Dbconnection : DbContext
     {
-        public DbConnection()
-            : base("name=DbConnection")
+        public Dbconnection()
+            : base("name=Dbconnection")
         {
         }
     

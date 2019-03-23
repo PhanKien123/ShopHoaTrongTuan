@@ -19,5 +19,10 @@ namespace Project.Data
         public string Email { get; set; }
         public string Content { get; set; }
         public Nullable<bool> Status { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        public string MetaTitle { get; set; }
+        public string SeoTitle { get; set; }
+        public string MetaKeywords { get; set; }
+        public string MetaDescriptions { get; set; }
     }
 }

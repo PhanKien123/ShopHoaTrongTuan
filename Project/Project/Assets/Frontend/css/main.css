@@ -3121,6 +3121,21 @@ input.num-product::-webkit-inner-spin-button {
   transition: transform 0.9s ease;
 }
 
+    .hov-img0 .thumb {
+        width: 100%;
+        -webkit-transition: transform 0.9s ease;
+        -o-transition: transform 0.9s ease;
+        -moz-transition: transform 0.9s ease;
+        transition: transform 0.9s ease;
+    }
+    .hov-img0:hover .thumb {
+        -webkit-transform: scale(1.1);
+        -moz-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        -o-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+
 .hov-img0:hover img {
   -webkit-transform: scale(1.1);
   -moz-transform: scale(1.1);
@@ -3222,17 +3237,56 @@ div.idContainer {
     color: white;
     border: 1px solid #dfdfdf;
 }
+
+.news {
+    width: 100%;
+    height: auto;
+    padding: 0px;
+    background-color: #e6e6e6;
+}
+
+.article {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    padding: 0px;
+    margin-left: 0px;
+    vertical-align: top;
+}
+
+
+.thumb {
+    width: 295px;
+    height: 247px;
+    background-color: #3e3e3e;
+    background-image: none;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
 /*==================================================================
   RESPONSIVE RESPONSIVE RESPONSIVE RESPONSIVE RESPONSIVE RESPONSIVE
 ==================================================================*/
 
 /*//////////////////////////////////////////////////////////////////
+
+
 [ XL ]*/
 @media (max-width: 1199px) {
     div.idContainer {
         padding-left: 58px;
         padding-right: 58px;
     }
+
+    .thumb {
+        width: 295px;
+        height: 245px;
+        background-color: #3e3e3e;
+        background-image: none;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+    } 
   .m-0-xl {margin: 0;}
   .m-lr-0-xl {margin-left: 0; margin-right: 0;}
   .m-lr-15-xl {margin-left: 15px; margin-right: 15px;}
@@ -3259,6 +3313,7 @@ div.idContainer {
 /*//////////////////////////////////////////////////////////////////
 [ LG ]*/
 @media (max-width: 991px) {
+     
     div.idContainer {
         padding-left: 30px;
         padding-right: 30px;
@@ -3429,4 +3484,26 @@ h3.btn_Button {
     padding-bottom: 11px;
     color: #596d86;
     font-weight: bold;
+}
+
+.card-body.idpanel {
+    padding: 0px !important;
+}
+
+h1.produc-name-left {
+    font-size: 13px;
+    font-weight: bold;
+    margin-right: 12px;
+    background-color: #e7e6e8;
+    color: #576b84;
+}
+
+.row.produc-price-left {
+    margin-top: 2px;
+    font-size: 13px;
+    color: #c31212;
+}
+
+.row.mt-2.div-produc-name-left:hover {
+    background-color: #dad1e4;
 }

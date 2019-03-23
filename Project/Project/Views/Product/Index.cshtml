@@ -54,7 +54,7 @@
                     <option value="21">  Trên 10 Triệu</option>
                 </select>
             </div>
-           
+
         </div>
         <div class="col-12 col-xl-3 col-sm-12 col-md-3 col-lg-3">
             <div class="form-group">
@@ -105,7 +105,7 @@
 
             <div class="card-header">
                 <span class="pull-right">
-                    <button class="btn btn-primary btn-sm" onclick="Datahiden()">
+                    <button class="btn btn-primary btn-sm" onclick="window.location='/Product/Create'">
                         <i class="fa fa-Product-plus" aria-hidden="true"></i> Thêm mới
                     </button>
                     <button class="btn btn-primary btn-sm" onclick="window.location='/ProductCategory/Index'">
@@ -136,3 +136,59 @@
 
 
 
+
+<div class="modal" tabindex="-1" role="dialog" id="Delete_Product">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">XÓA SẢN PHẨM</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="CloseDeleteProduct()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn xóa sản phẩm không</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="DelProduct()">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    function Add_ProductCategoryShow() {
+        $("#Modal_AddProduct").show();
+    }
+
+    function Add_ProductCategoryHiden() {
+        $("#Modal_AddProduct").hide();
+    }
+
+    function Edit_ProductCategoryShow() {
+        $("#Modal_EditProduct").show();
+    }
+
+    function Edit_ProductCategoryHiden() {
+        $("#Modal_EditProdcutCategory").hide();
+    }
+
+    function CloseDeleteProductCategory() {
+        $("#Delete_ProductCategory").hide();
+    }
+
+
+    $(document).ready(function () {
+
+        $('#btnAddImageProductCategory').click(function () {
+            var fider = new CKFinder();
+            fider.selectActionFunction = function (fileUrl) {
+                $("#ImageAddProductCategory").append("<img src='" + fileUrl + "' style='width: 100%; height: 100%; ' />")
+                $('#txtAddImageProductCategory').val(fileUrl);
+            }
+            fider.popup();
+        })
+    });
+</script>

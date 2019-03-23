@@ -7,16 +7,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <div class="row">
     <div class="col-xl-12">
         <div class="breadcrumb-holder">
-            <h1 class="main-title float-left">THÊM MỚI SẢN PHẨM</h1>
+            <h1 class="main-title float-left">CẬP NHẬP SẢN PHẨM</h1>
             <ol class="breadcrumb float-right">
                 <li class="breadcrumb-item">Trang chủ</li>
                 <li class="breadcrumb-item active">Sản phẩm</li>
                 <li class="breadcrumb-item active">Danh sách sản phẩm</li>
-                <li class="breadcrumb-item active">Thêm mới</li>
+                <li class="breadcrumb-item active">Cập Nhập</li>
             </ol>
             <div class="clearfix"></div>
         </div>
@@ -33,10 +32,13 @@
             <div class="card-header">
                 <span class="pull-right">
                     <button class="btn btn-primary btn-sm" onclick="EditProduct()">
-                        <i class="fa fa-user-plus" aria-hidden="true"></i> Thêm ngay
+                        <i class="fa fa-user-plus" aria-hidden="true"></i> Cập nhập
                     </button>
-                    <button class="btn btn-primary btn-sm" id="btnEditImageProducts">
+                    <button class="btn btn-danger btn-sm" id="btnEditImageProducts">
                         <i class="fa fa-caret-square-o-down bigfonts" aria-hidden="true"></i> Chọn ảnh
+                    </button>
+                    <button class="btn btn-success btn-sm" id="btnAddImageDetailProducts" onclick="LoadModalImage()">
+                        <i class="fa fa-caret-square-o-down bigfonts" aria-hidden="true"></i> Ảnh Chi Tiết
                     </button>
                 </span>
             </div>
@@ -52,19 +54,23 @@
                                 HÌNH ẢNH CỦA SẢN PHẨM
                             </div>
                             <div class="card-body">
+                                @*Hình ảnh của sản phẩm*@
                                 <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
                                     <div class="row">
                                         <div class="w-100 h-25 pl-2 pr-2" id="ImageEditProduct">
-                                            <img src="/Uploads/images/product-04.jpg" style="width: 80%; height: 100%; padding-left:17%" title="Hình ảnh  sản phẩm" class="EditImageProduct">
+                                            <img src="@Model.Image" style="width: 80%; height: 100%; padding-left:17%" title="Hình ảnh  sản phẩm" class="EditImageProduct" alt="@Model.AltImage">
                                         </div>
                                     </div>
                                 </div>
-
+                                @*mô tả thông tin của sản phẩm theo hình ảnh*@
                                 <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
-                                    <input type="hidden" name="image" value="" id="txtEditImageProduct" />
+                                    @*đường dẫn của hình ảnh*@
+                                    <input type="hidden" name="image" value="@Model.Image" id="txtEditImageProduct" />
                                     <div class="row mt-3">
+
+                                        @*thông tin giới thiệu của hình ảnh*@
                                         <div class="col-md-12">
-                                            <input class="form-control" name="AltImage" type="text" placeholder="Mô tả hình ảnh" id="txtEditAltImageProduct" />
+                                            <input class="form-control" name="AltImage" value="@Model.AltImage" type="text" placeholder="Mô tả hình ảnh" id="txtEditAltImageProduct" />
                                         </div>
 
                                     </div>
@@ -75,79 +81,128 @@
                         </div>
 
 
-                        <div class="card col-md-4 pr-1">
+                        <div class="card col-md-5 pr-1">
                             <div class="card-header card_header">
                                 THÔNG TIN CỦA SẢN PHẨM
                             </div>
                             <div class="card-body">
-                                @*Tên sản phẩm*@
+
                                 <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="form-group">
-                                        <input class="form-control" value="@Model.Name" name="Name" type="text" placeholder="Tên của sản phẩm" id="txtEditProductName" title="Tên của loại sản phẩm" />
-                                    </div>
-                                </div>
+                                    <div class="row">
+                                        <div class="col-12 col-xl-6 col-sm-12 col-md-12 col-lg-6">
+                                            @*Tên của sản phẩm*@
+                                            <div class="form-group">
+                                                <input type="hidden" id="txtEditProductId" name="ID" value="@Model.ID" />
+                                                <input class="form-control" value="@Model.Name" name="Name" type="text" placeholder="Tên của sản phâm" id="txtEditNameProduct" title="Tên của sản phẩm" />
+                                            </div>
+                                        </div>
 
-                                @*Mô Tả Ngắn về sản phẩm*@
-                                <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="form-group">
-                                        <input class="form-control" value="@Model.Description" name="Description" type="text" placeholder="Mô tả ngắn về sản phẩm" id="txtEditDescription" title="Tên của loại sản phẩm" />
-                                    </div>
-                                </div>
-                                @*Loại sản phẩm*@
-                                <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
-
-                                    <div class="form-group">
-                                        <select name="ParentID" class="form-control txtSeachGroupProductCategory" id="txtEditProductParentId" title="tên nhóm của loại sản phẩm">
-                                            <option value="@Model.CategoryID">@Model.CategoryName</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                @*Giá bán của sản phẩm*@
-                                <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
-
-                                    <div class="form-group">
-                                        <input class="form-control"  name="PromotionPrice" value="@Model.PromotionPrice" type="text" placeholder="Giá bán" id="txtEditPromotionPriceProduct" title="Giá bán của sản phẩm" />
-                                    </div>
-                                </div>
-
-                                @*số lượng sản phẩm*@
-                                <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="form-group">
-                                        <input class="form-control" name="Quantity" value="@Model.Quantity" type="number" placeholder="số lượng sản phẩm" id="txtEditDisplayOrderProuctCategory" title="Thứ tự hiển thị trong danh sách" />
-                                    </div>
-                                </div>
-
-                                @*có hiển thị hiển thị lên trang chủ không*@
-                                <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
-
-                                    <div class="form-group">
-                                        <select name="ShowOnHome" class="form-control" required id="txtEditShowOnHomeProduct" title="Có cho phép loại sản phẩm có hiển thị lên trang chủ không">
-                                            <option value="true">hiển thị lên trang chủ  </option>
-                                            <option value="false">không hiển thị lên trang chủ </option>
-                                        </select>
+                                        <div class="col-12 col-xl-6 col-sm-12 col-md-12 col-lg-6">
+                                            @*Mô tả ngắng vền sản phẩm*@
+                                            <div class="form-group">
+                                                <input class="form-control" value="@Model.Description" name="Description" type="text" placeholder="Mô tả ngắn về sản phẩm" id="txtEditDescriptionProduct" title="Tên của loại sản phẩm" />
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </div>
+
+                                <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="row">
+                                        <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="row">
+                                                <div class="col-12 col-xl-6 col-sm-12 col-md-12 col-lg-6">
+                                                    @*Phân loại sản phẩm*@
+                                                    <div class="form-group">
+                                                        <select name="CategoryID" class="form-control txtSeachGroupProductCategory" id="txtEditCategoryIDProduct" title="tên nhóm của loại sản phẩm">
+                                                            <option value="">-loại sản phẩm -</option>
+                                                            <option value="@Model.CategoryID" selected>@Model.CategoryName</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-xl-6 col-sm-12 col-md-12 col-lg-6">
+                                                    @*Giá bán của sản phẩm*@
+                                                    <div class="form-group">
+                                                        <input class="form-control" name="PromotionPrice" value="@Model.PromotionPrice" type="text" placeholder="Giá bán" id="txtEditPromotionPriceProduct" title="Giá bán của sản phẩm" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="row">
+                                        <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="row">
+                                                @*số lượng sản phẩm*@
+                                                <div class="col-12 col-xl-6 col-sm-12 col-md-12 col-lg-6">
+                                                    <div class="form-group">
+                                                        <input class="form-control" name="Quantity" value="@Model.Quantity" type="number" placeholder="số lượng sản phẩm" id="txtEditDisplayOrderProuctCategory" title="Số lương sản phẩm" />
+                                                    </div>
+                                                </div>
+                                                @*Hiển thị trang chủ*@
+                                                <div class="col-12 col-xl-6 col-sm-12 col-md-12 col-lg-6">
+                                                    <div class="form-group">
+                                                        <select name="ShowOnHome" class="form-control" required id="txtEditShowOnHomeProduct" title="Có cho phép loại sản phẩm có hiển thị lên trang chủ không">
+                                                            <option value="true">hiển thị lên trang chủ  </option>
+                                                            <option value="false">không hiển thị lên trang chủ </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="row">
+                                        <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="row">
+                                                @*thời gian bảo hành*@
+                                                <div class="col-12 col-xl-6 col-sm-12 col-md-12 col-lg-6">
+                                                    <div class="form-group">
+                                                        <input class="form-control" name="Warranty" value="@Model.Warranty" type="number" placeholder="số lượng sản phẩm" id="txtEditWarrantyProduct" title="Thời gian bào hành sản phẩm là bao nhiêu tháng" />
+                                                    </div>
+                                                </div>
+                                                @*Phân Loại Sản phẩm theo chuyên mục *@
+                                                <div class="col-12 col-xl-6 col-sm-12 col-md-12 col-lg-6">
+                                                    <div class="form-group">
+                                                        <select name="TopHot" class="form-control" required id="txtEditTopHotProduct" title="Phân loại sản phẩm theo chuyên mục" value="@Model.TopHot">
+                                                            <option value="1">Sản phẩm mới  </option>
+                                                            <option value="2">Sản phẩm bán chạy </option>
+                                                            <option value="3">Sản phẩm giảm giá </option>
+                                                            <option value="4">Cây theo phong thủy </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
 
-                        <div class="card col-md-4 pl-1">
+                        <div class="card col-md-3 pl-1">
                             <div class="card-header card_header">
-                                THÔNG TIN SEO LOẠI SẢN PHẨM
+                                THÔNG TIN SEO CỦA SẢN PHẨM
                             </div>
                             <div class="card-body">
                                 <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
 
                                     <div class="form-group">
-                                        <input class="form-control"  value="@Model.MetaTitle" name="MetaTitle" type="text" placeholder="Meta Title" id="txtEditMetaTitleProduct" />
+                                        <input class="form-control" value="@Model.MetaTitle" name="MetaTitle" type="text" placeholder="Meta Title" id="txtEditMetaTitleProduct" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
 
                                     <div class="form-group">
-                                        <input class="form-control" name="SeoTitle" type="text" placeholder="Seo Title" id="txtEditSeoTitleProduct" />
+                                        <input class="form-control" value="@Model.SeoTitle" name="SeoTitle" type="text" placeholder="Seo Title" id="txtEditSeoTitleProduct" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
@@ -159,7 +214,7 @@
                                 <div class="col-12 col-xl-12 col-sm-12 col-md-12 col-lg-12">
 
                                     <div class="form-group">
-                                        <input class="form-control" name="MetaDescriptions" @Model.MetaDescriptions type="text" placeholder="Meta Description" id="txtEditMetaDescriptionsProduct" />
+                                        <input class="form-control" value="@Model.MetaDescriptions" name="MetaDescriptions" type="text" placeholder="Meta Description" id="txtEditMetaDescriptionsProduct" />
                                     </div>
                                 </div>
                             </div>
@@ -169,13 +224,12 @@
                     <div class="row mt-3">
                         <div class="card col-md-12 pr-1">
                             <div class="card-header card_header">
-                                BÀI VIẾT GIỚI THIỆU LOẠI SẢN PHẨM
+                                B
                             </div>
                             <div class="card-body">
-                                <input type="hidden" name="DescriptionIdDetail" id="txtEditDescriptionProduct" />
-                                <textarea id="txtEditDescriptionProductCkeditor"  >@Html.Raw(Model.DescriptionIdDetail)</textarea>
+                                <input type="hidden" name="DescriptionIdDetail" id="txtEditDescriptionIdDetailProduct" />
+                                <textarea id="txtEditDescriptionProductCkeditor">@Html.Raw(Model.DescriptionIdDetail)</textarea>
 
-                          
                             </div>
                         </div>
                     </div>
@@ -211,13 +265,143 @@
             var fider = new CKFinder();
             fider.selectActionFunction = function (fileUrl) {
                 $(".EditImageProduct ").remove();
-                $("#ImageEditProduct").append("<img src='" + fileUrl + "' style='width: 80%; height: 100%; padding-left:17% ' class='EditImageProduct' title='Hình ảnh loại sản phẩm'/>")
+                $("#ImageEditProduct").append("<img src='" + fileUrl + "' style='width: 80%; height: 100%; pEditing-left:17% ' class='EditImageProduct' title='Hình ảnh loại sản phẩm'/>")
                 $('#txtEditImageProduct').val(fileUrl);
             }
             fider.popup();
         })
     });
 </script>
+
+
+
+
+<!-- The Modal -->
+<div class="modal" id="modal_ListImage">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">HÌNH ẢNH CHI TIẾT CỦA SẢN PHẨM</h4>
+                <div class="pull-right">
+                    
+                    <button class="btn btn-dark btn-sm" name="btnSaveImgae" id="btnSaveImgae">
+                        <i class="fa fa-caret-square-o-down bigfonts" aria-hidden="true"></i> Chọn ảnh
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="imageList" id="imageList">
+
+                </div>
+
+                <input type="hidden" name="Id" value="@Model.ID" id="ProductId" />
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-sm" id="btnSaveListImgae">
+                    <i class="fa fa-caret-square-o-down bigfonts" aria-hidden="true"></i> Lưu
+                </button>
+                <button class="btn btn-danger btn-sm" id="btnSaveListImgae" onclick="CloseAddImage()">
+                    <i class="fa fa-caret-square-o-down bigfonts" aria-hidden="true"></i> Xóa
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+<script>
+
+    //Phan Đình kiên : đóng khung add ảnh chi tiết
+    function CloseAddImage() {
+        $("#modal_ListImage").hide();
+    }
+
+
+
+    $(document).ready(function () {
+
+        $('#btnSaveImgae').click(function () {
+            var fider = new CKFinder();
+            fider.selectActionFunction = function (fileUrl) {
+                $(".imageList").append("  <div style='float:left'><img src='" + fileUrl + "'  style='width: 120px; height:120px; margin: 5px; border: 1px solid #120321;' class='ListImageDetail' /> <a href='' class='btn-delete-imgae'> <i class='fa fa-times'></i> </a>   </div>");
+                $(".btn-delete-imgae").off('click').on('click', function (e) {
+                    e.preventDefault();
+                    $(this).parent().remove();
+                });
+
+            }
+            fider.popup();
+        });
+
+        //Phan Đình Kiên : Lấy tiến hành lưu danh sách ảnh chi tiết của sản phẩm
+        $('#btnSaveListImgae').click(function () {
+            var imgae = [];
+
+            // lấy toàn bộ đường dẫn của ảnh
+            $.each($("#imageList img"), function (i, item) {
+                imgae.push($(item).prop('src'));
+            });
+
+            // tiaans hành thêm ảnh vào trong cơ sở dữ liệu
+            $.ajax({
+                url: "/Product/AddListProduct",
+                type: "POST",
+                dataType: 'json',
+                data: { image: JSON.stringify(imgae), Id: $("#ProductId").val() },
+                success: function (result) {
+                    if (result == 1) {
+                        $("#modal_ListImage").hide();
+                        swal("Thông Báo!", "Cập nhập thành công danh sách ảnh", "success");
+                    }
+                    else {
+                        $("#modal_ListImage").hide();
+                        swal("Thông báo lỗi", "(Cập nhập danh sách ảnh không thành công)", "error");
+                    }
+                    SeachProduct();
+                }
+
+            });
+
+        })
+
+
+        LoadImage();
+    });
+
+    function LoadImage() {
+        $.ajax({
+            url: "/Product/LoadListImage",
+            type: "GET",
+            dataType: 'json',
+            data: { Id: $("#ProductId").val() },
+            success: function (result) {
+                var html = "";
+                $.each(result, function (i, item) {
+                    $(".imageList").append("<div style='float:left'><img src='" + item + "'  style='width: 120px; height:120px; margin: 5px; border: 1px solid #120321;' class='ListImageDetail' /> <a href='' class='btn-delete-imgae'> <i class='fa fa-times'></i> </a>   </div>");
+                    $(".btn-delete-imgae").off('click').on('click', function (e) {
+                        e.preventDefault();
+                        $(this).parent().remove();
+                    });
+                });
+
+            }
+
+        });
+    }
+
+</script>
+
 
 
 

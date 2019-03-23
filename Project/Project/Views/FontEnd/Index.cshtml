@@ -5,6 +5,9 @@
 }
 
 @using Project.Models.FontEnd
+
+<style>
+</style>
 <!-- Slider -->
 <section class="section-slide">
     <div class="wrap-slick1">
@@ -86,7 +89,7 @@
 
 <section class="sec-banner bg0 p-t-80 p-b-50" style="background-color:#c6e4d03b">
     <div class="container-fluid idContainer">
-        
+
         <div class="p-b-10 ">
             <h3 class="btn_Button">
                 <i class="fa fa-shopping-basket bigfonts" aria-hidden="true"></i>
@@ -139,82 +142,122 @@
 
 
 
-
+<style>
+    .mySlides {
+        display: none;
+    }
+</style>
 <!-- Product -->
 <section class="bg0 p-t-23 p-b-140" style="background-color:#c6e4d03b">
     <div class="container-fluid">
 
         <div class="row idContainer" id="idContainer">
-            <div class="col-3">
+            <div class="col-12 col-sm-12 col-md-5 col-lg-3 col-xl-3">
                 <div class="card ">
                     <div class="card-header">Sản phẩm mới</div>
-                   
-                    <div class="card-body">
-                        @{
-                            for (int i = 0; i < 5; i++)
+
+                    <div class="card-body idpanel">
+
+                        <div style="height:300px;  width: 100%; overflow-x: hidden;overflow-y: scroll;" class="noscroll">
+                            @for (int i = 0; i < 10; i++)
                             {
-                                <div class="row mt-2">
-                                    <div class="col-3"> <img src="~/Uploads/images/Sản phẩm/product-03.jpg" alt="IMG-PRODUCT" style="width:100%"></div>
-                                    <div class="col-9"><p>Cây hương thảo là loài cây thân gỗ, có màu xanh tỏa ra hương thươm  </p></div>
+                                <div class="row mt-2 div-produc-name-left">
+                                    <div class="col-4"> <img src="~/Uploads/images/Sản phẩm/product-03.jpg" alt="IMG-PRODUCT" style="width:100%"></div>
+                                    <div class="col-8">
+                                        <div class="row">
+                                            <h1 class="produc-name-left">Sen đá chuỗi ngọc đứng</h1>
+                                        </div>
+                                        <div class="row produc-price-left">
+                                            <p>Giá : 100 Ngàn</p>
+                                        </div>
+                                    </div>
                                 </div>
                             }
-                        }
+                        </div>
+
                     </div>
 
                 </div>
 
                 <div class="card mt-3">
                     <div class="card-header">Đang bán chạy</div>
-                    <div class="card-body">
-                        @{
-                            for (int i = 0; i < 5; i++)
+                    <div class="card-body idpanel">
+
+                        <div style="height:300px;  width: 100%; overflow-x: hidden;overflow-y: scroll;" class="noscroll">
+                            @for (int i = 0; i < 10; i++)
                             {
-                                <div class="row mt-2">
-                                    <div class="col-3"> <img src="~/Uploads/images/Sản phẩm/product-03.jpg" alt="IMG-PRODUCT" style="width:100%"></div>
-                                    <div class="col-9"><p>Cây hương thảo là loài cây thân gỗ, có màu xanh tỏa ra hương thươm  </p></div>
+                                <div class="row mt-2 div-produc-name-left">
+                                    <div class="col-4"> <img src="~/Uploads/images/Sản phẩm/product-03.jpg" alt="IMG-PRODUCT" style="width:100%"></div>
+                                    <div class="col-8">
+                                        <div class="row">
+                                            <h1 class="produc-name-left">Sen đá chuỗi ngọc đứng</h1>
+                                        </div>
+                                        <div class="row produc-price-left">
+                                            <p>Giá : 100 Ngàn</p>
+                                        </div>
+                                    </div>
                                 </div>
                             }
-                        }
+                        </div>
+
                     </div>
-                   
+
                 </div>
 
                 <div class="card mt-3">
                     <div class="card-header">Đang giảm giá</div>
-                    <div class="card-body">
-                        @{
-                            for (int i = 0; i < 5; i++)
+                    <div class="card-body idpanel">
+
+                        <div style="height:300px;  width: 100%; overflow-x: hidden;overflow-y: scroll;" class="noscroll">
+                            @for (int i = 0; i < 10; i++)
                             {
-                                <div class="row mt-2">
-                                    <div class="col-3"> <img src="~/Uploads/images/Sản phẩm/product-03.jpg" alt="IMG-PRODUCT" style="width:100%"></div>
-                                    <div class="col-9"><p>Cây hương thảo là loài cây thân gỗ, có màu xanh tỏa ra hương thươm  </p></div>
+                                <div class="row mt-2 div-produc-name-left">
+                                    <div class="col-4"> <img src="~/Uploads/images/Sản phẩm/product-03.jpg" alt="IMG-PRODUCT" style="width:100%"></div>
+                                    <div class="col-8">
+                                        <div class="row">
+                                            <h1 class="produc-name-left">Sen đá chuỗi ngọc đứng</h1>
+                                        </div>
+                                        <div class="row produc-price-left">
+                                            <p>Giá : 100 Ngàn</p>
+                                        </div>
+                                    </div>
                                 </div>
                             }
-                        }
+                        </div>
+
                     </div>
-                    
+
                 </div>
 
                 <div class="card mt-3">
                     <div class="card-header">Cây theo phong thủy</div>
-                    <div class="card-body">
-                        @{
-                            for (int i = 0; i < 5; i++)
+                    <div class="card-body idpanel">
+
+                        <div style="height:300px;  width: 100%; overflow-x: hidden;overflow-y: scroll;" class="noscroll">
+                            @for (int i = 0; i < 10; i++)
                             {
-                                <div class="row mt-2">
-                                    <div class="col-3"> <img src="~/Uploads/images/Sản phẩm/product-03.jpg" alt="IMG-PRODUCT" style="width:100%"></div>
-                                    <div class="col-9"><p>Cây hương thảo là loài cây thân gỗ, có màu xanh tỏa ra hương thươm  </p></div>
+                                <div class="row mt-2 div-produc-name-left">
+                                    <div class="col-4"> <img src="~/Uploads/images/Sản phẩm/product-03.jpg" alt="IMG-PRODUCT" style="width:100%"></div>
+                                    <div class="col-8">
+                                        <div class="row">
+                                            <h1 class="produc-name-left">Sen đá chuỗi ngọc đứng</h1>
+                                        </div>
+                                        <div class="row produc-price-left">
+                                            <p>Giá : 100 Ngàn</p>
+                                        </div>
+                                    </div>
                                 </div>
                             }
-                        }
+                        </div>
+
                     </div>
-                   
+
                 </div>
 
             </div>
 
 
-            <div class="col-9">
+            <div class="col-12 col-sm-12 col-md-7 col-lg-9 col-xl-9">
 
                 <div class="p-b-10 ">
                     <h3 class="btn_Button">
@@ -235,7 +278,7 @@
                             foreach (GetFontendProductCategoryModels data in ViewBag.ListProductCategory)
                             {
 
-                                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".@data.ID">
+                                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".1">
                                     @data.Name
                                 </button>
                             }
@@ -473,12 +516,21 @@
                     </div>
                 </div>
 
-                <div class="row @*isotope-grid*@">
-                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item 1">
+                <div class="row ">
+                    <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 p-b-20 isotope-item 1">
                         <!-- Block2 -->
                         <div class="block2">
+
                             <div class="block2-pic hov-img0">
-                                <img src="~/Uploads/images/Sản phẩm/product-01.jpg" alt="IMG-PRODUCT">
+
+                                <div class="news">
+                                    <div class="article">
+                                        <div class="thumb" style="background-image: url('/Uploads/images/Sản phẩm/product-22.jpg');" aria-label="Ảnh sản phẩm" role="img" title="Ảnh sản phẩm"></div>
+
+                                    </div>
+
+                                </div>
+
 
                                 <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                     Mua Ngay
@@ -506,11 +558,15 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                    <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 p-b-20 isotope-item 1">
                         <!-- Block2 -->
                         <div class="block2">
                             <div class="block2-pic hov-img0">
-                                <img src="~/Uploads/images/Sản phẩm/product-02.jpg" alt="IMG-PRODUCT">
+                                <div class="news">
+                                    <div class="article">
+                                        <div class="thumb" style="background-image: url('/Uploads/images/Sản phẩm/product-02.jpg');" aria-label="Ảnh sản phẩm" role="img" title="Ảnh sản phẩm"></div>
+                                    </div>
+                                </div>
 
                                 <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                     Mua Ngay
@@ -539,11 +595,15 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item men">
+                    <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 p-b-20 isotope-item 1">
                         <!-- Block2 -->
                         <div class="block2">
                             <div class="block2-pic hov-img0">
-                                <img src="~/Uploads/images/Sản phẩm/product-03.jpg" alt="IMG-PRODUCT">
+                                <div class="news">
+                                    <div class="article">
+                                        <div class="thumb" style="background-image: url('/Uploads/images/Sản phẩm/product-03.jpg');" aria-label="Ảnh sản phẩm" role="img" title="Ảnh sản phẩm"></div>
+                                    </div>
+                                </div>
 
                                 <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                     Mua Ngay
@@ -572,11 +632,15 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                    <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 p-b-20 isotope-item 1">
                         <!-- Block2 -->
                         <div class="block2">
                             <div class="block2-pic hov-img0">
-                                <img src="~/Uploads/images/Sản phẩm/product-04.jpg" alt="IMG-PRODUCT">
+                                <div class="news">
+                                    <div class="article">
+                                        <div class="thumb" style="background-image: url('/Uploads/images/Sản phẩm/product-04.jpg');" aria-label="Ảnh sản phẩm" role="img" title="Ảnh sản phẩm"></div>
+                                    </div>
+                                </div>
 
                                 <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                     Mua Ngay
@@ -604,11 +668,15 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                    <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 p-b-20 isotope-item 1">
                         <!-- Block2 -->
                         <div class="block2">
                             <div class="block2-pic hov-img0">
-                                <img src="~/Uploads/images/Sản phẩm/product-05.jpg" alt="IMG-PRODUCT">
+                                <div class="news">
+                                    <div class="article">
+                                        <div class="thumb" style="background-image: url('/Uploads/images/Sản phẩm/product-05.jpg');" aria-label="Ảnh sản phẩm" role="img" title="Ảnh sản phẩm"></div>
+                                    </div>
+                                </div>
 
                                 <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                     Mua Ngay
@@ -636,11 +704,15 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item watches">
+                    <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 p-b-20 isotope-item 1">
                         <!-- Block2 -->
                         <div class="block2">
                             <div class="block2-pic hov-img0">
-                                <img src="~/Uploads/images/Sản phẩm/product-06.jpg" alt="IMG-PRODUCT">
+                                <div class="news">
+                                    <div class="article">
+                                        <div class="thumb" style="background-image: url('/Uploads/images/Sản phẩm/product-06.jpg');" aria-label="Ảnh sản phẩm" role="img" title="Ảnh sản phẩm"></div>
+                                    </div>
+                                </div>
 
                                 <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                     Mua Ngay
@@ -668,11 +740,15 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                    <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 p-b-20 isotope-item 1">
                         <!-- Block2 -->
                         <div class="block2">
                             <div class="block2-pic hov-img0">
-                                <img src="~/Uploads/images/Sản phẩm/product-07.jpg" alt="IMG-PRODUCT">
+                                <div class="news">
+                                    <div class="article">
+                                        <div class="thumb" style="background-image: url('/Uploads/images/Sản phẩm/product-07.jpg');" aria-label="Ảnh sản phẩm" role="img" title="Ảnh sản phẩm"></div>
+                                    </div>
+                                </div>
 
                                 <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                     Mua Ngay
@@ -700,11 +776,15 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                    <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 p-b-20 isotope-item 1">
                         <!-- Block2 -->
                         <div class="block2">
                             <div class="block2-pic hov-img0">
-                                <img src="~/Uploads/images/Sản phẩm/product-08.jpg" alt="IMG-PRODUCT">
+                                <div class="news">
+                                    <div class="article">
+                                        <div class="thumb" style="background-image: url('/Uploads/images/Sản phẩm/product-08.jpg');" aria-label="Ảnh sản phẩm" role="img" title="Ảnh sản phẩm"></div>
+                                    </div>
+                                </div>
 
                                 <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                     Mua Ngay
@@ -732,11 +812,15 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item shoes">
+                    <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 p-b-20 isotope-item 1">
                         <!-- Block2 -->
                         <div class="block2">
                             <div class="block2-pic hov-img0">
-                                <img src="~/Uploads/images/Sản phẩm/product-09.jpg" alt="IMG-PRODUCT">
+                                <div class="news">
+                                    <div class="article">
+                                        <div class="thumb" style="background-image: url('/Uploads/images/Sản phẩm/product-09.jpg');" aria-label="Ảnh sản phẩm" role="img" title="Ảnh sản phẩm"></div>
+                                    </div>
+                                </div>
 
                                 <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                     Mua Ngay
@@ -764,11 +848,15 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                    <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 p-b-20 isotope-item 1">
                         <!-- Block2 -->
                         <div class="block2">
                             <div class="block2-pic hov-img0">
-                                <img src="~/Uploads/images/Sản phẩm/product-10.jpg" alt="IMG-PRODUCT">
+                                <div class="news">
+                                    <div class="article">
+                                        <div class="thumb" style="background-image: url('/Uploads/images/Sản phẩm/product-10.jpg');" aria-label="Ảnh sản phẩm" role="img" title="Ảnh sản phẩm"></div>
+                                    </div>
+                                </div>
 
                                 <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                     Mua Ngay
@@ -796,11 +884,15 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item men">
+                    <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 p-b-20 isotope-item 1">
                         <!-- Block2 -->
                         <div class="block2">
                             <div class="block2-pic hov-img0">
-                                <img src="~/Uploads/images/Sản phẩm/product-11.jpg" alt="IMG-PRODUCT">
+                                <div class="news">
+                                    <div class="article">
+                                        <div class="thumb" style="background-image: url('/Uploads/images/Sản phẩm/product-11.jpg');" aria-label="Ảnh sản phẩm" role="img" title="Ảnh sản phẩm"></div>
+                                    </div>
+                                </div>
 
                                 <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                     Mua Ngay
@@ -828,11 +920,15 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item men">
+                    <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 p-b-20 isotope-item 1">
                         <!-- Block2 -->
                         <div class="block2">
                             <div class="block2-pic hov-img0">
-                                <img src="~/Uploads/images/Sản phẩm/product-12.jpg" alt="IMG-PRODUCT">
+                                <div class="news">
+                                    <div class="article">
+                                        <div class="thumb" style="background-image: url('/Uploads/images/Sản phẩm/product-12.jpg');" aria-label="Ảnh sản phẩm" role="img" title="Ảnh sản phẩm"></div>
+                                    </div>
+                                </div>
 
                                 <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                     Mua Ngay
@@ -860,11 +956,15 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                    <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 p-b-20 isotope-item 1">
                         <!-- Block2 -->
                         <div class="block2">
                             <div class="block2-pic hov-img0">
-                                <img src="~/Uploads/images/Sản phẩm/product-13.jpg" alt="IMG-PRODUCT">
+                                <div class="news">
+                                    <div class="article">
+                                        <div class="thumb" style="background-image: url('/Uploads/images/Sản phẩm/product-13.jpg');" aria-label="Ảnh sản phẩm" role="img" title="Ảnh sản phẩm"></div>
+                                    </div>
+                                </div>
 
                                 <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                     Mua Ngay
@@ -892,12 +992,15 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                    <div class="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 p-b-20 isotope-item 1">
                         <!-- Block2 -->
                         <div class="block2">
                             <div class="block2-pic hov-img0">
-                                <img src="~/Uploads/images/Sản phẩm/product-14.jpg" alt="IMG-PRODUCT">
-
+                                <div class="news">
+                                    <div class="article">
+                                        <div class="thumb" style="background-image: url('/Uploads/images/Sản phẩm/product-14.jpg');" aria-label="Ảnh sản phẩm" role="img" title="Ảnh sản phẩm"></div>
+                                    </div>
+                                </div>
                                 <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                     Mua Ngay
                                 </a>
@@ -924,11 +1027,15 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item watches">
+                    <div class="col-sm-6 col-12 col-md-6 col-lg-4 col-xl-3 p-b-35 isotope-item watches">
                         <!-- Block2 -->
                         <div class="block2">
                             <div class="block2-pic hov-img0">
-                                <img src="~/Uploads/images/Sản phẩm/product-15.jpg" alt="IMG-PRODUCT">
+                                <div class="news">
+                                    <div class="article">
+                                        <div class="thumb" style="background-image: url('/Uploads/images/Sản phẩm/product-15.jpg');" aria-label="Ảnh sản phẩm" role="img" title="Ảnh sản phẩm"></div>
+                                    </div>
+                                </div>
 
                                 <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                     Mua Ngay
@@ -956,11 +1063,15 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                    <div class="col-sm-6 col-12 col-md-6 col-lg-4 col-xl-3 p-b-35 isotope-item women">
                         <!-- Block2 -->
                         <div class="block2">
                             <div class="block2-pic hov-img0">
-                                <img src="~/Uploads/images/Sản phẩm/product-16.jpg" alt="IMG-PRODUCT">
+                                <div class="news">
+                                    <div class="article">
+                                        <div class="thumb" style="background-image: url('/Uploads/images/Sản phẩm/product-16.jpg');" aria-label="Ảnh sản phẩm" role="img" title="Ảnh sản phẩm"></div>
+                                    </div>
+                                </div>
 
                                 <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                     Mua Ngay
@@ -990,15 +1101,32 @@
                 </div>
 
             </div>
+
         </div>
 
-        <!-- Load more -->
-        <div class="flex-c-m flex-w w-full p-t-45">
-            <a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-                Chuyển Trang
-            </a>
-        </div>
     </div>
+
+
+
 </section>
 
 
+
+
+<script>
+    var myIndex = 0;
+    carousel();
+
+    function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        myIndex++;
+        if (myIndex > x.length) { myIndex = 1 }
+        x[myIndex - 1].style.display = "block";
+        setTimeout(carousel, 2500);
+    }
+
+</script>

@@ -7,7 +7,7 @@ namespace Project.Util
 {
     public class Constants
     {
-        public static int MAX_ROW_IN_LIST = 10;
+        public static int MAX_ROW_IN_LIST = 4;
         public static int ACTIVE = 1;
         public static int INSERT_SUCCESS = 1;
         public static int RETURN_TRUE = 1;
